@@ -1,0 +1,2 @@
+car2x_unit
+-DCATKIN_DEVEL_PREFIX=/home/huiyu/group1_service/devel -DCMAKE_INSTALL_PREFIX=/home/huiyu/group1_service/install -G Unix Makefiles
