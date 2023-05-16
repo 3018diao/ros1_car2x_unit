@@ -109,12 +109,54 @@ car2x_unit/CMakeFiles/car2x_unit.dir/src/itspduheader_interface.pb.cc.s: cmake_f
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/car2x_unit.dir/src/itspduheader_interface.pb.cc.s"
 	cd /home/huiyu/group1_service/build/car2x_unit && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S //home/huiyu/group1_service/src/car2x_unit/src/itspduheader_interface.pb.cc -o CMakeFiles/car2x_unit.dir/src/itspduheader_interface.pb.cc.s
 
+car2x_unit/CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.o: car2x_unit/CMakeFiles/car2x_unit.dir/flags.make
+car2x_unit/CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.o: //home/huiyu/group1_service/src/car2x_unit/src/cam_interface.pb.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huiyu/group1_service/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object car2x_unit/CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.o"
+	cd /home/huiyu/group1_service/build/car2x_unit && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.o -c //home/huiyu/group1_service/src/car2x_unit/src/cam_interface.pb.cc
+
+car2x_unit/CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.i"
+	cd /home/huiyu/group1_service/build/car2x_unit && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E //home/huiyu/group1_service/src/car2x_unit/src/cam_interface.pb.cc > CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.i
+
+car2x_unit/CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.s"
+	cd /home/huiyu/group1_service/build/car2x_unit && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S //home/huiyu/group1_service/src/car2x_unit/src/cam_interface.pb.cc -o CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.s
+
+car2x_unit/CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.o: car2x_unit/CMakeFiles/car2x_unit.dir/flags.make
+car2x_unit/CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.o: //home/huiyu/group1_service/src/car2x_unit/src/denm_interface.pb.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huiyu/group1_service/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object car2x_unit/CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.o"
+	cd /home/huiyu/group1_service/build/car2x_unit && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.o -c //home/huiyu/group1_service/src/car2x_unit/src/denm_interface.pb.cc
+
+car2x_unit/CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.i"
+	cd /home/huiyu/group1_service/build/car2x_unit && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E //home/huiyu/group1_service/src/car2x_unit/src/denm_interface.pb.cc > CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.i
+
+car2x_unit/CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.s"
+	cd /home/huiyu/group1_service/build/car2x_unit && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S //home/huiyu/group1_service/src/car2x_unit/src/denm_interface.pb.cc -o CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.s
+
+car2x_unit/CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.o: car2x_unit/CMakeFiles/car2x_unit.dir/flags.make
+car2x_unit/CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.o: //home/huiyu/group1_service/src/car2x_unit/src/etsi_msg_interface.pb.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huiyu/group1_service/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object car2x_unit/CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.o"
+	cd /home/huiyu/group1_service/build/car2x_unit && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.o -c //home/huiyu/group1_service/src/car2x_unit/src/etsi_msg_interface.pb.cc
+
+car2x_unit/CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.i"
+	cd /home/huiyu/group1_service/build/car2x_unit && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E //home/huiyu/group1_service/src/car2x_unit/src/etsi_msg_interface.pb.cc > CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.i
+
+car2x_unit/CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.s"
+	cd /home/huiyu/group1_service/build/car2x_unit && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S //home/huiyu/group1_service/src/car2x_unit/src/etsi_msg_interface.pb.cc -o CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.s
+
 # Object files for target car2x_unit
 car2x_unit_OBJECTS = \
 "CMakeFiles/car2x_unit.dir/src/car2x_unit.cpp.o" \
 "CMakeFiles/car2x_unit.dir/src/cpm_interface.pb.cc.o" \
 "CMakeFiles/car2x_unit.dir/src/etsi_its_cdd.pb.cc.o" \
-"CMakeFiles/car2x_unit.dir/src/itspduheader_interface.pb.cc.o"
+"CMakeFiles/car2x_unit.dir/src/itspduheader_interface.pb.cc.o" \
+"CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.o" \
+"CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.o" \
+"CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.o"
 
 # External object files for target car2x_unit
 car2x_unit_EXTERNAL_OBJECTS =
@@ -123,6 +165,9 @@ car2x_unit_EXTERNAL_OBJECTS =
 /home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit: car2x_unit/CMakeFiles/car2x_unit.dir/src/cpm_interface.pb.cc.o
 /home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit: car2x_unit/CMakeFiles/car2x_unit.dir/src/etsi_its_cdd.pb.cc.o
 /home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit: car2x_unit/CMakeFiles/car2x_unit.dir/src/itspduheader_interface.pb.cc.o
+/home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit: car2x_unit/CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.o
+/home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit: car2x_unit/CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.o
+/home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit: car2x_unit/CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.o
 /home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit: car2x_unit/CMakeFiles/car2x_unit.dir/build.make
 /home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit: /opt/ros/noetic/lib/libroscpp.so
 /home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit: /usr/lib/x86_64-linux-gnu/libpthread.so
@@ -143,7 +188,7 @@ car2x_unit_EXTERNAL_OBJECTS =
 /home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so.0.4
 /home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit: /usr/lib/x86_64-linux-gnu/libprotobuf.so
 /home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit: car2x_unit/CMakeFiles/car2x_unit.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/huiyu/group1_service/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable /home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/huiyu/group1_service/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable /home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit"
 	cd /home/huiyu/group1_service/build/car2x_unit && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/car2x_unit.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

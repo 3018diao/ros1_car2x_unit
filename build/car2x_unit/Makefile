@@ -407,6 +407,33 @@ rosgraph_msgs_generate_messages_py/fast:
 	cd /home/huiyu/group1_service/build && $(MAKE) -f car2x_unit/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make car2x_unit/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
+src/cam_interface.pb.o: src/cam_interface.pb.cc.o
+
+.PHONY : src/cam_interface.pb.o
+
+# target to build an object file
+src/cam_interface.pb.cc.o:
+	cd /home/huiyu/group1_service/build && $(MAKE) -f car2x_unit/CMakeFiles/car2x_unit.dir/build.make car2x_unit/CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.o
+.PHONY : src/cam_interface.pb.cc.o
+
+src/cam_interface.pb.i: src/cam_interface.pb.cc.i
+
+.PHONY : src/cam_interface.pb.i
+
+# target to preprocess a source file
+src/cam_interface.pb.cc.i:
+	cd /home/huiyu/group1_service/build && $(MAKE) -f car2x_unit/CMakeFiles/car2x_unit.dir/build.make car2x_unit/CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.i
+.PHONY : src/cam_interface.pb.cc.i
+
+src/cam_interface.pb.s: src/cam_interface.pb.cc.s
+
+.PHONY : src/cam_interface.pb.s
+
+# target to generate assembly for a file
+src/cam_interface.pb.cc.s:
+	cd /home/huiyu/group1_service/build && $(MAKE) -f car2x_unit/CMakeFiles/car2x_unit.dir/build.make car2x_unit/CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.s
+.PHONY : src/cam_interface.pb.cc.s
+
 src/car2x_unit.o: src/car2x_unit.cpp.o
 
 .PHONY : src/car2x_unit.o
@@ -461,6 +488,33 @@ src/cpm_interface.pb.cc.s:
 	cd /home/huiyu/group1_service/build && $(MAKE) -f car2x_unit/CMakeFiles/car2x_unit.dir/build.make car2x_unit/CMakeFiles/car2x_unit.dir/src/cpm_interface.pb.cc.s
 .PHONY : src/cpm_interface.pb.cc.s
 
+src/denm_interface.pb.o: src/denm_interface.pb.cc.o
+
+.PHONY : src/denm_interface.pb.o
+
+# target to build an object file
+src/denm_interface.pb.cc.o:
+	cd /home/huiyu/group1_service/build && $(MAKE) -f car2x_unit/CMakeFiles/car2x_unit.dir/build.make car2x_unit/CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.o
+.PHONY : src/denm_interface.pb.cc.o
+
+src/denm_interface.pb.i: src/denm_interface.pb.cc.i
+
+.PHONY : src/denm_interface.pb.i
+
+# target to preprocess a source file
+src/denm_interface.pb.cc.i:
+	cd /home/huiyu/group1_service/build && $(MAKE) -f car2x_unit/CMakeFiles/car2x_unit.dir/build.make car2x_unit/CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.i
+.PHONY : src/denm_interface.pb.cc.i
+
+src/denm_interface.pb.s: src/denm_interface.pb.cc.s
+
+.PHONY : src/denm_interface.pb.s
+
+# target to generate assembly for a file
+src/denm_interface.pb.cc.s:
+	cd /home/huiyu/group1_service/build && $(MAKE) -f car2x_unit/CMakeFiles/car2x_unit.dir/build.make car2x_unit/CMakeFiles/car2x_unit.dir/src/denm_interface.pb.cc.s
+.PHONY : src/denm_interface.pb.cc.s
+
 src/etsi_its_cdd.pb.o: src/etsi_its_cdd.pb.cc.o
 
 .PHONY : src/etsi_its_cdd.pb.o
@@ -487,6 +541,33 @@ src/etsi_its_cdd.pb.s: src/etsi_its_cdd.pb.cc.s
 src/etsi_its_cdd.pb.cc.s:
 	cd /home/huiyu/group1_service/build && $(MAKE) -f car2x_unit/CMakeFiles/car2x_unit.dir/build.make car2x_unit/CMakeFiles/car2x_unit.dir/src/etsi_its_cdd.pb.cc.s
 .PHONY : src/etsi_its_cdd.pb.cc.s
+
+src/etsi_msg_interface.pb.o: src/etsi_msg_interface.pb.cc.o
+
+.PHONY : src/etsi_msg_interface.pb.o
+
+# target to build an object file
+src/etsi_msg_interface.pb.cc.o:
+	cd /home/huiyu/group1_service/build && $(MAKE) -f car2x_unit/CMakeFiles/car2x_unit.dir/build.make car2x_unit/CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.o
+.PHONY : src/etsi_msg_interface.pb.cc.o
+
+src/etsi_msg_interface.pb.i: src/etsi_msg_interface.pb.cc.i
+
+.PHONY : src/etsi_msg_interface.pb.i
+
+# target to preprocess a source file
+src/etsi_msg_interface.pb.cc.i:
+	cd /home/huiyu/group1_service/build && $(MAKE) -f car2x_unit/CMakeFiles/car2x_unit.dir/build.make car2x_unit/CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.i
+.PHONY : src/etsi_msg_interface.pb.cc.i
+
+src/etsi_msg_interface.pb.s: src/etsi_msg_interface.pb.cc.s
+
+.PHONY : src/etsi_msg_interface.pb.s
+
+# target to generate assembly for a file
+src/etsi_msg_interface.pb.cc.s:
+	cd /home/huiyu/group1_service/build && $(MAKE) -f car2x_unit/CMakeFiles/car2x_unit.dir/build.make car2x_unit/CMakeFiles/car2x_unit.dir/src/etsi_msg_interface.pb.cc.s
+.PHONY : src/etsi_msg_interface.pb.cc.s
 
 src/itspduheader_interface.pb.o: src/itspduheader_interface.pb.cc.o
 
@@ -544,15 +625,24 @@ help:
 	@echo "... rosgraph_msgs_generate_messages_lisp"
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... rosgraph_msgs_generate_messages_py"
+	@echo "... src/cam_interface.pb.o"
+	@echo "... src/cam_interface.pb.i"
+	@echo "... src/cam_interface.pb.s"
 	@echo "... src/car2x_unit.o"
 	@echo "... src/car2x_unit.i"
 	@echo "... src/car2x_unit.s"
 	@echo "... src/cpm_interface.pb.o"
 	@echo "... src/cpm_interface.pb.i"
 	@echo "... src/cpm_interface.pb.s"
+	@echo "... src/denm_interface.pb.o"
+	@echo "... src/denm_interface.pb.i"
+	@echo "... src/denm_interface.pb.s"
 	@echo "... src/etsi_its_cdd.pb.o"
 	@echo "... src/etsi_its_cdd.pb.i"
 	@echo "... src/etsi_its_cdd.pb.s"
+	@echo "... src/etsi_msg_interface.pb.o"
+	@echo "... src/etsi_msg_interface.pb.i"
+	@echo "... src/etsi_msg_interface.pb.s"
 	@echo "... src/itspduheader_interface.pb.o"
 	@echo "... src/itspduheader_interface.pb.i"
 	@echo "... src/itspduheader_interface.pb.s"

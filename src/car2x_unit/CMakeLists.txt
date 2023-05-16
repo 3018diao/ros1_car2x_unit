@@ -21,7 +21,7 @@ include_directories(
   ${CMAKE_CURRENT_SOURCE_DIR}/include/car2x_unit
 )
 
-add_executable(car2x_unit src/car2x_unit.cpp src/cpm_interface.pb.cc src/etsi_its_cdd.pb.cc src/itspduheader_interface.pb.cc)
+add_executable(car2x_unit src/car2x_unit.cpp src/cpm_interface.pb.cc src/etsi_its_cdd.pb.cc src/itspduheader_interface.pb.cc src/cam_interface.pb.cc src/denm_interface.pb.cc src/etsi_msg_interface.pb.cc)
 
 
 # install(TARGETS car2x_unit
