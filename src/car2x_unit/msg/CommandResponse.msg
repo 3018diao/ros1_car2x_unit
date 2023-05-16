@@ -1,0 +1,4 @@
+CommandResponseStatus status
+string message
+bool is_data
+CommandResponseData data

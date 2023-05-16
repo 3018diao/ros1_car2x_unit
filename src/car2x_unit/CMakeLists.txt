@@ -5,6 +5,7 @@ project(car2x_unit)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  message_generation
 )
 
 find_package(Protobuf REQUIRED)
