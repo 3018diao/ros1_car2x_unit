@@ -10,10 +10,20 @@ find_package(catkin REQUIRED COMPONENTS
 
 find_package(Protobuf REQUIRED)
 
+file(GLOB MESSAGE_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/msg ${CMAKE_CURRENT_SOURCE_DIR}/msg/*.msg)
 
-########
+add_message_files(
+  FILES
+  ${MESSAGE_FILES}
+)
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+
 catkin_package(
-  CATKIN_DEPENDS roscpp std_msgs
+  CATKIN_DEPENDS roscpp std_msgs message_runtime
 )
 
 include_directories(

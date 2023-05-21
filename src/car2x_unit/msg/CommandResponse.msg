@@ -1,4 +1,3 @@
-CommandResponseStatus status
+uint8 status
 string message
-bool is_data
 CommandResponseData data

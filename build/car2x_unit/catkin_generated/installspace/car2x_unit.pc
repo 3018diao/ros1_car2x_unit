@@ -3,6 +3,6 @@ prefix=/home/huiyu/group1_service/install
 Name: car2x_unit
 Description: Description of car2x_unit
 Version: 0.0.0
-Cflags: 
+Cflags: -I${prefix}/include
 Libs: -L${prefix}/lib 
-Requires: roscpp std_msgs
+Requires: roscpp std_msgs message_runtime

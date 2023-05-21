@@ -11,5 +11,6 @@ export CMAKE_PREFIX_PATH="/home/huiyu/group1_service/devel:$CMAKE_PREFIX_PATH"
 export LD_LIBRARY_PATH="/home/huiyu/group1_service/devel/lib:$LD_LIBRARY_PATH"
 export PKG_CONFIG_PATH="/home/huiyu/group1_service/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PWD='/home/huiyu/group1_service/build'
+export PYTHONPATH="/home/huiyu/group1_service/devel/lib/python3/dist-packages:$PYTHONPATH"
 export ROSLISP_PACKAGE_DIRECTORIES='/home/huiyu/group1_service/devel/share/common-lisp'
 export ROS_PACKAGE_PATH="//home/huiyu/group1_service/src:/home/huiyu/group1_service/src:$ROS_PACKAGE_PATH"

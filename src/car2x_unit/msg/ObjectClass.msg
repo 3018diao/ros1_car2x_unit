@@ -1,0 +1,5 @@
+uint8 class
+TrafficParticipantType vehicleSubClass
+VruProfileAndSubprofile vruSubClass
+VruClusterInformation groupSubClass
+OtherSubClass otherSubClass
