@@ -5,6 +5,7 @@ project(car2x_unit)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  rospy
   message_generation
 )
 
@@ -33,6 +34,11 @@ include_directories(
 
 add_executable(car2x_unit src/car2x_unit.cpp src/cpm_interface.pb.cc src/etsi_its_cdd.pb.cc src/itspduheader_interface.pb.cc src/cam_interface.pb.cc src/denm_interface.pb.cc src/etsi_msg_interface.pb.cc)
 
+catkin_install_python(
+  PROGRAMS
+    scripts/group4_demo.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 # install(TARGETS car2x_unit
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})

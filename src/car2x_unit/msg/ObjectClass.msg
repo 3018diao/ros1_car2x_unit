@@ -1,5 +1,5 @@
-uint8 class
+uint8 class_type
 TrafficParticipantType vehicleSubClass
 VruProfileAndSubprofile vruSubClass
 VruClusterInformation groupSubClass
-OtherSubClass otherSubClass
+OtherSubClass otherSubClassTrafficParticipantType

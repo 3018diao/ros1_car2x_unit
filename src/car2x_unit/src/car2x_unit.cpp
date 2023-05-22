@@ -2,6 +2,7 @@
 #include "std_msgs/String.h"
 #include "cpm_interface.pb.h"
 #include <boost/asio.hpp>
+#include "car2x_unit/CPMessage.h"
 
 using boost::asio::ip::udp;
 using namespace std;

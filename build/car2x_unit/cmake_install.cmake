@@ -213,3 +213,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/car2x_unit" TYPE FILE FILES "//home/huiyu/group1_service/src/car2x_unit/package.xml")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/car2x_unit" TYPE PROGRAM FILES "/home/huiyu/group1_service/build/car2x_unit/catkin_generated/installspace/group4_demo.py")
+endif()
+
