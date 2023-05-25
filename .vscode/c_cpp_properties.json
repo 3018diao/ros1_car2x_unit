@@ -6,13 +6,14 @@
                 "${workspaceFolder}/**",
                 "/opt/ros/noetic/include/**",
                 "/home/huiyu/group1_service/src/car2x_unit/include/car2x_unit/**",
-                "/usr/include/**",
+                "/usr/include/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "c17",
             "cppStandard": "gnu++14",
-            "intelliSenseMode": "linux-gcc-x64"
+            "intelliSenseMode": "linux-gcc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
         }
     ],
     "version": 4

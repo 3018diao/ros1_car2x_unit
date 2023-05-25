@@ -1,9 +1,0 @@
-//home/huiyu/group1_service/install/_setup_util.py
-//home/huiyu/group1_service/install/env.sh
-//home/huiyu/group1_service/install/setup.bash
-//home/huiyu/group1_service/install/local_setup.bash
-//home/huiyu/group1_service/install/setup.sh
-//home/huiyu/group1_service/install/local_setup.sh
-//home/huiyu/group1_service/install/setup.zsh
-//home/huiyu/group1_service/install/local_setup.zsh
-//home/huiyu/group1_service/install/.rosinstall

@@ -67,14 +67,14 @@ set(car2x_unit_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(car2x_unit_SOURCE_PREFIX //home/huiyu/group1_service/src/car2x_unit)
-  set(car2x_unit_DEVEL_PREFIX /home/huiyu/group1_service/devel)
+  set(car2x_unit_SOURCE_PREFIX /home/huiyu/ros1_car2x_unit/src/car2x_unit)
+  set(car2x_unit_DEVEL_PREFIX /home/huiyu/ros1_car2x_unit/devel)
   set(car2x_unit_INSTALL_PREFIX "")
   set(car2x_unit_PREFIX ${car2x_unit_DEVEL_PREFIX})
 else()
   set(car2x_unit_SOURCE_PREFIX "")
   set(car2x_unit_DEVEL_PREFIX "")
-  set(car2x_unit_INSTALL_PREFIX /home/huiyu/group1_service/install)
+  set(car2x_unit_INSTALL_PREFIX /home/huiyu/ros1_car2x_unit/install)
   set(car2x_unit_PREFIX ${car2x_unit_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/huiyu/group1_service/install/lib;/home/huiyu/group1_service/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/huiyu/ros1_car2x_unit/install/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

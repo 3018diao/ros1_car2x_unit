@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "/home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit"
-  "/home/huiyu/group1_service/devel/lib/car2x_unit/car2x_unit.pdb"
+  "/home/huiyu/ros1_car2x_unit/devel/lib/car2x_unit/car2x_unit"
+  "/home/huiyu/ros1_car2x_unit/devel/lib/car2x_unit/car2x_unit.pdb"
   "CMakeFiles/car2x_unit.dir/src/cam_interface.pb.cc.o"
   "CMakeFiles/car2x_unit.dir/src/car2x_unit.cpp.o"
   "CMakeFiles/car2x_unit.dir/src/cpm_interface.pb.cc.o"

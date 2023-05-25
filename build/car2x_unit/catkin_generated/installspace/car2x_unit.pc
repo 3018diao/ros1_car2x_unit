@@ -1,4 +1,4 @@
-prefix=/home/huiyu/group1_service/install
+prefix=/home/huiyu/ros1_car2x_unit/install
 
 Name: car2x_unit
 Description: Description of car2x_unit

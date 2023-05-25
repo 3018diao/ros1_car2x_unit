@@ -1,6 +1,6 @@
 # CMake generated Testfile for 
-# Source directory: //home/huiyu/group1_service/src
-# Build directory: /home/huiyu/group1_service/build
+# Source directory: /home/huiyu/ros1_car2x_unit/src
+# Build directory: /home/huiyu/ros1_car2x_unit/build
 # 
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.

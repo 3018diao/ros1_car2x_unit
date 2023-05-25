@@ -1,8 +1,8 @@
-prefix=/home/huiyu/group1_service/devel
+prefix=/home/huiyu/ros1_car2x_unit/devel
 
 Name: car2x_unit
 Description: Description of car2x_unit
 Version: 0.0.0
-Cflags: -I/home/huiyu/group1_service/devel/include
+Cflags: -I/home/huiyu/ros1_car2x_unit/devel/include
 Libs: -L${prefix}/lib 
 Requires: roscpp std_msgs message_runtime
