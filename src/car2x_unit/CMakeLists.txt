@@ -9,7 +9,10 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
 )
 
+
 find_package(Protobuf REQUIRED)
+find_package(Flatbuffers REQUIRED PATHS "/home/huiyu/flatbuffers/CMake")
+
 
 file(GLOB MESSAGE_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/msg ${CMAKE_CURRENT_SOURCE_DIR}/msg/*.msg)
 
@@ -30,9 +33,12 @@ catkin_package(
 include_directories(
   ${catkin_INCLUDE_DIRS}
   ${CMAKE_CURRENT_SOURCE_DIR}/include/car2x_unit
+  /home/huiyu/flatbuffers/include
 )
 
-add_executable(car2x_unit src/car2x_unit.cpp src/cpm_interface.pb.cc src/etsi_its_cdd.pb.cc src/itspduheader_interface.pb.cc src/cam_interface.pb.cc src/denm_interface.pb.cc src/etsi_msg_interface.pb.cc)
+add_executable(car2x_unit
+  src/car2x_unit.cpp
+)
 
 catkin_install_python(
   PROGRAMS

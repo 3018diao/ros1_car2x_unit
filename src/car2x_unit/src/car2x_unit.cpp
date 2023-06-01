@@ -1,13 +1,15 @@
 #include <ros/ros.h>
 #include "std_msgs/String.h"
-#include "cpm_interface.pb.h"
+// #include "cpm_interface.pb.h"
 #include <boost/asio.hpp>
 #include <ros/message_operations.h>
 #include <sstream>
 #include "car2x_unit/PerceivedObjectContainer.h"
+#include "cpm_interface_generated.h"
 
 using boost::asio::ip::udp;
 using namespace std;
+
 class UDPListenerNode
 {
 public:
@@ -55,18 +57,17 @@ private:
     {
         if (!error)
         {
-            CPMessage message;
-            if (!message.ParseFromArray(recv_buffer_.data(), bytes_transferred))
+            const CPMessage *message = flatbuffers::GetRoot<CPMessage>(recv_buffer_.data());
+            if (!message)
             {
                 ROS_ERROR("Failed to parse received data");
             }
             else
             {
-                std_msgs::String str_msg;
-                str_msg.data = message.DebugString();
-                publisher_.publish(str_msg);
+                //  message->header()->message_id()
+                // publisher_.publish(str_msg);
 
-                ROS_INFO("Received message: %s\n-----------------\n", message.DebugString().c_str());
+                // ROS_INFO("Received message: %s\n-----------------\n", str_msg.data.c_str());
             }
 
             start_receive();

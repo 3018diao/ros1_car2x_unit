@@ -6,7 +6,8 @@
                 "${workspaceFolder}/**",
                 "/opt/ros/noetic/include/**",
                 "/home/huiyu/group1_service/src/car2x_unit/include/car2x_unit/**",
-                "/usr/include/**"
+                "/usr/include/**",
+                "/home/huiyu/flatbuffers/include/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
