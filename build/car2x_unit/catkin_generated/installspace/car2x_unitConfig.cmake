@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(car2x_unit_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "include " STREQUAL " ")
+if(NOT " " STREQUAL " ")
   set(car2x_unit_INCLUDE_DIRS "")
-  set(_include_dirs "include")
+  set(_include_dirs "")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/huiyu/ros1_car2x_unit/install/lib;/opt/ros/noetic/lib)
+    foreach(path /home/huiyu/ros1_car2x_unit/install/lib;/home/huiyu/ros1_car2x_unit/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
@@ -177,7 +177,7 @@ foreach(library ${libraries})
   endif()
 endforeach()
 
-set(car2x_unit_EXPORTED_TARGETS "car2x_unit_generate_messages_cpp;car2x_unit_generate_messages_eus;car2x_unit_generate_messages_lisp;car2x_unit_generate_messages_nodejs;car2x_unit_generate_messages_py")
+set(car2x_unit_EXPORTED_TARGETS "")
 # create dummy targets for exported code generation targets to make life of users easier
 foreach(t ${car2x_unit_EXPORTED_TARGETS})
   if(NOT TARGET ${t})
@@ -185,7 +185,7 @@ foreach(t ${car2x_unit_EXPORTED_TARGETS})
   endif()
 endforeach()
 
-set(depends "roscpp;std_msgs;message_runtime")
+set(depends "roscpp;message_runtime")
 foreach(depend ${depends})
   string(REPLACE " " ";" depend_list ${depend})
   # the package name of the dependency must be kept in a unique variable so that it is not overwritten in recursive calls
@@ -214,7 +214,7 @@ foreach(depend ${depends})
   _list_append_deduplicate(car2x_unit_EXPORTED_TARGETS ${${car2x_unit_dep}_EXPORTED_TARGETS})
 endforeach()
 
-set(pkg_cfg_extras "car2x_unit-msg-extras.cmake")
+set(pkg_cfg_extras "")
 foreach(extra ${pkg_cfg_extras})
   if(NOT IS_ABSOLUTE ${extra})
     set(extra ${car2x_unit_DIR}/${extra})

@@ -1,5 +1,5 @@
 import rospy
-from car2x_unit.msg import PerceivedObjectContainer, PerceivedObject
+from cpm_interfaces.msg import PerceivedObjectContainer, PerceivedObject
 
 def send_message():
 

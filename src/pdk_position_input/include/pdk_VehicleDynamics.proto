@@ -1,0 +1,15 @@
+syntax = "proto2";
+
+package pb.PDK;
+
+import "pdk_MsgHeader.proto";
+
+message VehicleDynamics
+{
+    optional pb.PDK.MsgHeader t_Header  = 1;
+    //                                    2;
+    optional float        f_LongVel     = 3;  // Vehicle velocity [m/s] in longitudinal direction
+    optional float        f_LongAccel   = 4;  // Vehicle acceleration [m/s^2] in longitudinal direction
+    optional float        f_YawRate     = 5;  // Vehicle yaw rate [deg/s], counter clockwise rotation is positive
+    optional float        f_LatAccel    = 6;  // Vehicle acceleration [m/s^2] in lateral direction, left is positive
+}

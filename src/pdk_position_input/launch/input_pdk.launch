@@ -1,0 +1,7 @@
+<launch>>
+    <arg name="use_pdk_localization" default="true" />
+
+    <node pkg="pdk_position_input" type="node" name="pdk_input" output="screen">
+        <param name="use_pdk_localization" value="$(arg use_pdk_localization)" />
+    </node>
+</launch>

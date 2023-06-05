@@ -4,30 +4,17 @@ project(car2x_unit)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-  std_msgs
   rospy
   message_generation
+  cpm_interfaces
 )
 
 
-find_package(Protobuf REQUIRED)
+# find_package(Protobuf REQUIRED)
 find_package(Flatbuffers REQUIRED PATHS "/home/huiyu/flatbuffers/CMake")
 
-
-file(GLOB MESSAGE_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/msg ${CMAKE_CURRENT_SOURCE_DIR}/msg/*.msg)
-
-add_message_files(
-  FILES
-  ${MESSAGE_FILES}
-)
-
-generate_messages(
-  DEPENDENCIES
-  std_msgs
-)
-
 catkin_package(
-  CATKIN_DEPENDS roscpp std_msgs message_runtime
+  CATKIN_DEPENDS roscpp message_runtime
 )
 
 include_directories(
@@ -49,5 +36,5 @@ catkin_install_python(
 # install(TARGETS car2x_unit
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
-target_link_libraries(car2x_unit ${catkin_LIBRARIES} ${PROTOBUF_LIBRARIES})
+target_link_libraries(car2x_unit ${catkin_LIBRARIES})
 
