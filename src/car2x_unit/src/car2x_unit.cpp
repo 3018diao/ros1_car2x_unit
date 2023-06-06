@@ -5,13 +5,17 @@
 #include <ros/message_operations.h>
 #include <sstream>
 #include "cpm_interfaces/PerceivedObjectContainer.h"
-#include "gossip_msg_generated.h"
-#include "cpm_interface_generated.h"
+// #include "gossip_msg_generated.h"
+// #include "cpm_interface_generated.h"
+#include "all_interface_generated.h"
+
+using namespace Gos;
 
 using boost::asio::ip::udp;
 using namespace std;
-using namespace Gossip;
-using namespace cpm_interfaces;
+// using namespace Gossip;
+// using namespace cpm_interfaces;
+using namespace Gos;
 
 class UDPListenerNode
 {
@@ -65,6 +69,8 @@ private:
             {
                 auto busy_ratio = msg->gossip_as_ChannelBusyRatio();
                 ROS_INFO("receive: ChannelBusyRatio: \n  busy=%u\n  total=%u", busy_ratio->busy(), busy_ratio->total());
+                ROS_INFO("----------------------------------------------------------------------------------");
+
                 break;
             }
             case GossipType_LinkLayerReception:
@@ -85,9 +91,95 @@ private:
             case GossipType_FacilityLayerReception:
             {
                 auto fl_reception = msg->gossip_as_FacilityLayerReception();
-                auto cp_message = fl_reception->msg_as_CPMessage();
-                ROS_INFO("FacilityLayerReception received. ItsPduHeader: \n  protocol_version=%u\n  message_id=%u\n  station_id=%u\n  generation_delta_time=%lu",
-                         cp_message->header()->protocol_version(), cp_message->header()->message_id(), cp_message->header()->station_id(), cp_message->generation_delta_time());
+                auto fl_msg = fl_reception->msg();
+                if (fl_msg->cam_msg() != nullptr)
+                {
+                    auto cam_msg = fl_msg->cam_msg();
+                    // Now you can access the fields of the CAMessage
+                    // For example, if CAMessage has a field named `data`, you can access it like this:
+                    // auto data = cam_msg->data();
+                    // And then you can print the data or do something else with it.
+                }
+                if (fl_msg->cpm_msg() != nullptr)
+                {
+                    auto cpm_msg = fl_msg->cpm_msg();
+
+                    // Access the fields of the CPMessage
+                    auto header = cpm_msg->header();
+                    auto generation_delta_time = cpm_msg->generation_delta_time();
+                    auto mgmt_container = cpm_msg->mgmt_container();
+                    auto cpm_payload = cpm_msg->cpm_payload();
+
+                    // Print the fields or do something else with them
+                    ROS_INFO("CPMessage: \n  generation_delta_time=%lu", generation_delta_time);
+
+                    // Access the fields of the ItsPduHeader
+                    if (header != nullptr)
+                    {
+                        auto protocol_version = header->protocol_version();
+                        auto message_id = header->message_id();
+                        auto station_id = header->station_id();
+
+                        // Print the fields or do something else with them
+                        ROS_INFO("ItsPduHeader: \n  protocol_version=%u\n  message_id=%u\n  station_id=%u", protocol_version, message_id, station_id);
+                    }
+
+                    // Access the fields of the ManagementContainer
+                    if (mgmt_container != nullptr)
+                    {
+                        auto reference_time = mgmt_container->reference_time();
+                        auto reference_position = mgmt_container->reference_position();
+                        auto segmentation_info = mgmt_container->segmentation_info();
+                        auto message_rate_range = mgmt_container->message_rate_range();
+                        auto station_type = mgmt_container->station_type();
+
+                        // Print the fields or do something else with them
+                        ROS_INFO("ManagementContainer: \n  reference_time=%lu\n  station_type=%u", reference_time, station_type);
+
+                        // Continue with the fields of reference_position, segmentation_info, and message_rate_range...
+                    }
+
+                    // Access the fields of the CpmPayload
+                    if (cpm_payload != nullptr)
+                    {
+                        auto originating_stations_container = cpm_payload->originating_stations_container();
+                        auto sensor_information_container = cpm_payload->sensor_information_container();
+                        auto perception_region_container = cpm_payload->perception_region_container();
+                        auto perceived_object_container = cpm_payload->perceived_object_container();
+
+                        // Print the fields or do something else with them
+                        ROS_INFO("CpmPayload: \n  originating_stations_container=%p\n  sensor_information_container=%p\n  perception_region_container=%p\n  perceived_object_container=%p", originating_stations_container, sensor_information_container, perception_region_container, perceived_object_container);
+
+                        // Continue with the fields of originating_stations_container, sensor_information_container, perception_region_container, and perceived_object_container...
+                        if (originating_stations_container != nullptr)
+                        {
+                            // Access fields of originating_stations_container...
+                        }
+
+                        if (sensor_information_container != nullptr)
+                        {
+                            // Access fields of sensor_information_container...
+                        }
+
+                        if (perception_region_container != nullptr)
+                        {
+                            // Access fields of perception_region_container...
+                        }
+
+                        if (perceived_object_container != nullptr)
+                        {
+                            for (auto perceived_object : *perceived_object_container->perceived_objects())
+                            {
+                                auto object_id = perceived_object->object_id();
+                                auto measurement_delta_time = perceived_object->measurement_delta_time();
+                                // Continue with other fields...
+
+                                // ROS_INFO("PerceivedObject: \n  object_id=%u\n  object_class=%u", object_id, object_class);
+                            }
+                        }
+                    }
+                }
+
                 break;
             }
             default:

@@ -9,7 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
   cpm_interfaces
 )
 
-
+find_package(Protobuf REQUIRED)
 # find_package(Protobuf REQUIRED)
 find_package(Flatbuffers REQUIRED PATHS "/home/huiyu/flatbuffers/CMake")
 
@@ -37,4 +37,8 @@ catkin_install_python(
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 target_link_libraries(car2x_unit ${catkin_LIBRARIES})
+
+message(STATUS "aaacatkin_LIBRARIES: ${catkin_LIBRARIES}")
+
+message(STATUS "bbbcatkin_LIBRARIES: ${PROTOBUF_LIBRARIES}")
 
