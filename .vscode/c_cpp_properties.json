@@ -8,7 +8,8 @@
                 "/home/huiyu/group1_service/src/car2x_unit/include/car2x_unit/**",
                 "/usr/include/**",
                 "/home/huiyu/flatbuffers/include/**",
-                "/home/huiyu/ros1_car2x_unit/devel/include/**"
+                "/home/huiyu/ros1_car2x_unit/devel/include/**",
+                "/home/huiyu/ros1_car2x_unit/devel/include/cpm_interfaces/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

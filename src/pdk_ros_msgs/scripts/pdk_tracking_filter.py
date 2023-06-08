@@ -5,7 +5,7 @@ from cpm_interfaces.msg import *
 
 
 pub_filtered = rospy.Publisher('filtered_data_topic', pdk_RadarObjectList, queue_size=10)
-def callback(data):
+def callback(data: pdk_RadarObjectList):
     if data.f_ObjectScore > 0.7 and data.f_DistX < 100 and data.f_DistY < 50:
     # Create a new message for the filtered data
        

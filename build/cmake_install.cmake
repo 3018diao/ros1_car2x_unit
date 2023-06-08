@@ -139,7 +139,6 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/huiyu/ros1_car2x_unit/build/cpm_interfaces/cmake_install.cmake")
   include("/home/huiyu/ros1_car2x_unit/build/pdk_ros_msgs/cmake_install.cmake")
   include("/home/huiyu/ros1_car2x_unit/build/car2x_unit/cmake_install.cmake")
-  include("/home/huiyu/ros1_car2x_unit/build/pdk_position_input/cmake_install.cmake")
 
 endif()
 
