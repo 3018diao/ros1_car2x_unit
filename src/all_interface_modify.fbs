@@ -1,0 +1,980 @@
+// Generated from etsi_msg_interface.proto
+namespace Gos;
+
+enum Status : int {
+  SUCCESS = 0,
+  FAILURE = 1,
+  UNKNOWN = 2,
+  NOT_IMPLEMENTED = 3,
+}
+
+enum LifecycleAction : int {
+  SOFT_RESET = 0,
+  HARD_RESET = 1,
+}
+
+enum LinkLayerPriority : int {
+  BACKGROUND = 0,
+  BEST_EFFORT = 1,
+  VIDEO = 2,
+  VOICE = 3,
+}
+
+// ITS CDD
+enum AngularSpeedConfidence : int {
+  ASC_DEGSEC_01 = 0,
+  ASC_DEGSEC_02 = 1,
+  ASC_DEGSEC_05 = 2,
+  ASC_DEGSEC_10 = 3,
+  ASC_DEGSEC_20 = 4,
+  ASC_DEGSEC_50 = 5,
+  ASC_OUTOFRANGE = 6,
+  ASC_UNAVAILABLE = 7,
+}
+
+enum CurvatureCalculationMode : int {
+  CCM_YAWRATEUSED = 0,
+  CCM_YAWRATENOTUSED = 1,
+  CCM_UNAVAILABLE = 2,
+}
+
+enum CauseCodeType : int {
+  CCT_UNKNOWN = 0,
+  CCT_TRAFFICCONDITION = 1,
+  CCT_ACCIDENT = 2,
+  CCT_ROADWORKS = 3,
+  CCT_IMPASSABILITY = 5,
+  CCT_ADVERSEWEATHERCONDITION_ADHESION = 6,
+  CCT_AQUAPLANING = 7,
+  CCT_HAZARDOUSLOCATION_SURFACECONDITION = 9,
+  CCT_HAZARDOUSLOCATION_OBSTACLEONTHEROAD = 10,
+  CCT_HAZARDOUSLOCATION_ANIMALONTHEROAD = 11,
+  CCT_HUMANPRESENCEONTHEROAD = 12,
+  CCT_WRONGWAYDRIVING = 14,
+  CCT_RESCUEANDRECOVERYWORKINPROGRESS = 15,
+  CCT_ADVERSEWEATHERCONDITION_EXTREMEWEATHERCONDITION = 17,
+  CCT_ADVERSEWEATHERCONDITION_VISIBILITY = 18,
+  CCT_ADVERSEWEATHERCONDITION_PRECIPITATION = 19,
+  CCT_VIOLENCE = 20,
+  CCT_SLOWVEHICLE = 26,
+  CCT_DANGEROUSENDOFQUEUE = 27,
+  CCT_VEHICLEBREAKDOWN = 91,
+  CCT_POSTCRASH = 92,
+  CCT_HUMANPROBLEM = 93,
+  CCT_STATIONARYVEHICLE = 94,
+  CCT_EMERGENCYVEHICLEAPPROACHING = 95,
+  CCT_HAZARDOUSLOCATION_DANGEROUSCURVE = 96,
+  CCT_COLLISIONRISK = 97,
+  CCT_SIGNALVIOLATION = 98,
+  CCT_DANGEROUSSITUATION = 99,
+  CCT_RAILWAYLEVELCROSSING = 100,
+}
+
+enum DangerousGoodsBasic : int {
+  DGB_EXPLOSIVES1 = 0,
+  DGB_EXPLOSIVES2 = 1,
+  DGB_EXPLOSIVES3 = 2,
+  DGB_EXPLOSIVES4 = 3,
+  DGB_EXPLOSIVES5 = 4,
+  DGB_EXPLOSIVES6 = 5,
+  DGB_FLAMMABLEGASES = 6,
+  DGB_NONFLAMMABLEGASES = 7,
+  DGB_TOXICGASES = 8,
+  DGB_FLAMMABLELIQUIDS = 9,
+  DGB_FLAMMABLESOLIDS = 10,
+  DGB_SUBSTANCESLIABLETOSPONTANEOUSCOMBUSTION = 11,
+  DGB_SUBSTANCESEMITTINGFLAMMABLEGASESUPONCONTACTWITHWATER = 12,
+  DGB_OXIDIZINGSUBSTANCES = 13,
+  DGB_ORGANICPEROXIDES = 14,
+  DGB_TOXICSUBSTANCES = 15,
+  DGB_INFECTIOUSSUBSTANCES = 16,
+  DGB_RADIOACTIVEMATERIAL = 17,
+  DGB_CORROSIVESUBSTANCES = 18,
+  DGB_MISCELLANEOUSDANGEROUSSUBSTANCES = 19,
+}
+
+enum DriveDirection : int {
+  DD_FORWARD = 0,
+  DD_BACKWARD = 1,
+  DD_UNAVAILABLE = 2,
+}
+
+enum HardShoulderStatus : int {
+  HSS_AVAILABLE_FOR_STOPPING = 0,
+  HSS_CLOSED = 1,
+  HSS_AVAILABLE_FOR_DRIVING = 2,
+}
+
+enum LightBarSirenInUse : int {
+  LS_LIGHTBAR_ACTIVATED = 0,
+  LS_SIREN_ACTIVATED = 1,
+}
+
+enum PositioningSolutionType : int {
+  PST_NO_POSITIONING_SOLUTION = 0,
+  PST_SGNSS = 1,
+  PST_DGNSS = 2,
+  PST_SGNSS_PLUS_DR = 3,
+  PST_DGNSS_PLUS_DR = 4,
+  PST_DR = 5,
+}
+
+enum PositionOfOccupants : int {
+  POS_OCC_ROW1_LEFT_OCCUPIED = 0,
+  POS_OCC_ROW1_RIGHT_OCCUPIED = 1,
+  POS_OCC_ROW1_MID_OCCUPIED = 2,
+  POS_OCC_ROW1_NOT_DETECTABLE = 3,
+  POS_OCC_ROW1_NOT_PRESENT = 4,
+  POS_OCC_ROW2_LEFT_OCCUPIED = 5,
+  POS_OCC_ROW2_RIGHT_OCCUPIED = 6,
+  POS_OCC_ROW2_MID_OCCUPIED = 7,
+  POS_OCC_ROW2_NOT_DETECTABLE = 8,
+  POS_OCC_ROW2_NOT_PRESENT = 9,
+  POS_OCC_ROW3_LEFT_OCCUPIED = 10,
+  POS_OCC_ROW3_RIGHT_OCCUPIED = 11,
+  POS_OCC_ROW3_MID_OCCUPIED = 12,
+  POS_OCC_ROW3_NOT_DETECTABLE = 13,
+  POS_OCC_ROW3_NOT_PRESENT = 14,
+  POS_OCC_ROW4_LEFT_OCCUPIED = 15,
+  POS_OCC_ROW4_RIGHT_OCCUPIED = 16,
+  POS_OCC_ROW4_MID_OCCUPIED = 17,
+  POS_OCC_ROW4_NOT_DETECTABLE = 18,
+  POS_OCC_ROW4_NOT_PRESENT = 19,
+}
+
+enum RelevanceDistance : int {
+  REL_DIST_LESS_THAN_50M = 0,
+  REL_DIST_LESS_THAN_100M = 1,
+  REL_DIST_LESS_THAN_200M = 2,
+  REL_DIST_LESS_THAN_500M = 3,
+  REL_DIST_LESS_THAN_1000M = 4,
+  REL_DIST_LESS_THAN_5KM = 5,
+  REL_DIST_LESS_THAN_10KM = 6,
+  REL_DIST_OVER_10KM = 7,
+}
+
+enum RelevanceTrafficDirection : int {
+  REL_TD_ALL_TRAFFIC_DIRECTIONS = 0,
+  REL_TD_UPSTREAM_TRAFFIC = 1,
+  REL_TD_DOWNSTREAM_TRAFFIC = 2,
+  REL_TD_OPPOSITE_TRAFFIC = 3,
+}
+
+enum RequestResponseIndication : int {
+  RRI_REQUEST = 0,
+  RRI_RESPONSE = 1,
+}
+
+enum RoadType : int {
+  RT_URBAN_NOSTRUCTURALSEPARATIONTOOPPOSITELANES = 0,
+  RT_URBAN_WITHSTRUCTURALSEPARATIONTOOPPOSITELANES = 1,
+  RT_NONURBAN_NOSTRUCTURALSEPARATIONTOOPPOSITELANES = 2,
+  RT_NONURBAN_WITHSTRUCTURALSEPARATIONTOOPPOSITELANES = 3,
+}
+
+enum SensorType : int {
+  SNSR_UNDEFINED = 0,
+  SNSR_RADAR = 1,
+  SNSR_LIDAR = 2,
+  SNSR_MONOVIDEO = 3,
+  SNSR_STEROVISION = 4,
+  SNSR_NIGHTVISION = 5,
+  SNSR_ULTRASONIC = 6,
+  SNSR_PMD = 7,
+  SNSR_INDUCTIONLOOP = 8,
+  SNSR_SPHERICALCAMERA = 9,
+  SNSR_UWB = 10,
+  SNSR_ACOUSTIC = 11,
+  SNSR_LOCALAGGREGATION = 12,
+  SNSR_ITSAGGREGATION = 13,
+}
+
+enum StationarySince : int {
+  STATIONARY_SINCE_LESSTHAN1MINUTE = 0,
+  STATIONARY_SINCE_LESSTHAN2MINUTES = 1,
+  STATIONARY_SINCE_LESSTHAN15MINUTES = 2,
+  STATIONARY_SINCE_EQUALORGREATER15MINUTES = 3,
+}
+
+enum StationType : int {
+  STN_TYPE_UNKNOWN = 0,
+  STN_TYPE_PEDESTRIAN = 1,
+  STN_TYPE_CYCLIST = 2,
+  STN_TYPE_MOPED = 3,
+  STN_TYPE_MOTORCYCLE = 4,
+  STN_TYPE_PASSENGER_CAR = 5,
+  STN_TYPE_BUS = 6,
+  STN_TYPE_LIGHT_TRUCK = 7,
+  STN_TYPE_HEAVY_TRUCK = 8,
+  STN_TYPE_TRAILER = 9,
+  STN_TYPE_SPECIAL_VEHICLE = 10,
+  STN_TYPE_TRAM = 11,
+  STN_TYPE_ROAD_SIDE_UNIT = 15,
+}
+
+enum TrafficParticipantType : int {
+  TP_TYPE_UNKNOWN = 0,
+  TP_TYPE_PEDESTRIAN = 1,
+  TP_TYPE_CYCLIST = 2,
+  TP_TYPE_MOPED = 3,
+  TP_TYPE_MOTORCYCLE = 4,
+  TP_TYPE_PASSENGERCAR = 5,
+  TP_TYPE_BUS = 6,
+  TP_TYPE_LIGHTTRUCK = 7,
+  TP_TYPE_HEAVYTRUCK = 8,
+  TP_TYPE_TRAILER = 9,
+  TP_TYPE_SPECIALVEHICLE = 10,
+  TP_TYPE_TRAM = 11,
+  TP_TYPE_LIGHTVRUVEHICLE = 12,
+  TP_TYPE_ANIMAL = 13,
+  TP_TYPE_AGRICULTURAL = 14,
+  TP_TYPE_ROADSIDEUNIT = 15,
+}
+
+enum TrafficRule : int {
+  TR_NOPASSING = 0,
+  TR_NOPASSINGFORTRUCKS = 1,
+  TR_PASSTORIGHT = 2,
+  TR_PASSTOLEFT = 3,
+}
+
+enum VehicleLengthConfidenceIndication : int {
+  VLCI_NO_TRAILER_PRESENT = 0,
+  VLCI_TRAILER_PRESENT_WITH_KNOWN_LENGTH = 1,
+  VLCI_TRAILER_PRESENT_WITH_UNKNOWN_LENGTH = 2,
+  VLCI_TRAILER_PRESENCE_IS_UNKNOWN = 3,
+  VLCI_UNAVAILABLE = 4,
+}
+
+enum VruSubProfilePedestrian : int {
+  PED_UNAVAILABLE = 0,
+  PED_ORDINARY_PEDESTRIAN = 1,
+  PED_ROAD_WORKER = 2,
+  PED_FIRST_RESPONDER = 3,
+  PED_MAX = 15,
+}
+
+enum VruSubProfileBicyclist : int {
+  BC_UNAVAILABLE = 0,
+  BC_BICYCLIST = 1,
+  BC_WHEELCHAIR_USER = 2,
+  BC_HORSE_AND_RIDER = 3,
+  BC_ROLLERSKATER = 4,
+  BC_E_SCOOTER = 5,
+  BC_PERSONAL_TRANSPORTER = 6,
+  BC_PEDELEC = 7,
+  BC_SPEED_PEDELEC = 8,
+  BC_MAX = 15,
+}
+
+enum VruSubProfileMotorcyclist : int {
+  MC_UNAVAILABLE = 0,
+  MC_MOPED = 1,
+  MC_MOTORCYCLE = 2,
+  MC_MOTORCYCLE_AND_SIDECAR_RIGHT = 3,
+  MC_MOTORCYCLE_AND_SIDECAR_LEFT = 4,
+  MC_MAX = 15,
+}
+
+enum VruSubProfileAnimal : int {
+  AN_UNAVAILABLE = 0,
+  AN_WILD_ANIMAL = 1,
+  AN_FARM_ANIMAL = 2,
+  AN_SERVICE_ANIMAL = 3,
+  AN_MAX = 15,
+}
+
+enum YawRateConfidence : int {
+  YRC_DEGSEC_000_01 = 0,
+  YRC_DEGSEC_000_05 = 1,
+  YRC_DEGSEC_000_10 = 2,
+  YRC_DEGSEC_001_00 = 3,
+  YRC_DEGSEC_005_00 = 4,
+  YRC_DEGSEC_010_00 = 5,
+  YRC_DEGSEC_100_00 = 6,
+  YRC_OUTOFRANGE = 7,
+  YRC_UNAVAILABLE = 8,
+}
+
+
+union GossipType { ChannelBusyRatio, LinkLayerReception, FacilityLayerReception }
+
+table CommandRequest {
+  lifecycle:LifecycleAction;
+  link_layer_tx:LinkLayerTransmission;
+  radio_cfg:RadioConfiguration;
+  facilities_layer_tx:FacilityLayerTransmission;
+}
+
+table CommandResponse {
+  status:Status;
+  message:string;
+  data:CommandResponseData;
+}
+
+table CommandResponseData {
+  radio_cfg:RadioConfiguration;
+}
+
+table RadioConfiguration {
+  address:[ubyte];
+  channel_frequency_mhz:uint;
+  filter_unicast_destination:bool;
+  default_tx_power_cbm:int;
+  default_tx_datarate_500kbps:uint;
+}
+
+table LinkLayerTransmission {
+  source:[ubyte];
+  destination:[ubyte] (required);
+  priority:LinkLayerPriority;
+  channel:uint;
+  datarate_500kbps:uint;
+  power_cbm:int;
+  payload:[ubyte] (required);
+}
+
+table LinkLayerReception {
+  source:[ubyte] (required);
+  destination:[ubyte] (required);
+  channel:uint;
+  power_cbm:int;
+  payload:[ubyte] (required);
+}
+
+table FacilityLayerTransmission {
+  msg:FacilityLayerMessage (required);
+}
+
+table FacilityLayerReception {
+  msg:FacilityLayerMessage (required);
+}
+
+table FacilityLayerMessage {
+  cam_msg:CAMessage;
+  cpm_msg:CPMessage;
+}
+
+table ChannelBusyRatio {
+  busy:uint;
+  total:uint;
+}
+
+table GossipMessage {
+  gossip:GossipType;
+}
+
+// ITS PDU HEADER
+table ItsPduHeader {
+  protocol_version:uint;
+  message_id:uint;
+  station_id:uint;
+}
+
+
+// CAM
+table CAMessage {
+  header:ItsPduHeader (required);
+  generation_delta_time:ulong;
+  station_type:StationType;
+  reference_position:ReferencePosition (required);
+  high_frequency_container:BasicVehicleContainerHighFrequency (required);
+  low_frequency_container:BasicVehicleContainerLowFrequency;
+}
+
+table BasicVehicleContainerHighFrequency {
+  heading:Heading (required);
+  speed:Speed (required);
+  drive_direction:DriveDirection;
+  vehicle_length:VehicleLength (required);
+  vehicle_width:VehicleWidth (required);
+  longitudinal_acceleration:LongitudinalAcceleration (required);
+  curvature:Curvature (required);
+  curvature_calculation_mode:CurvatureCalculationMode;
+  yaw_rate:YawRate (required);
+}
+
+table BasicVehicleContainerLowFrequency {
+  temp2:uint;
+}
+
+
+// CPM
+table CPMessage {
+  header:ItsPduHeader (required);
+  generation_delta_time:ulong;
+  mgmt_container:ManagementContainer (required);
+  cpm_payload:CpmPayload (required);
+}
+
+table CpmPayload {
+  originating_stations_container:OriginatingStationsContainer (required);
+  sensor_information_container:SensorInformationContainer (required);
+  perception_region_container:PerceptionRegionContainer (required);
+  perceived_object_container:PerceivedObjectContainer;
+}
+
+table ManagementContainer {
+  reference_time:ulong;
+  reference_position:ReferencePosition (required);
+  segmentation_info:MessageSegmentationInfo;
+  message_rate_range:MessageRateRange;
+  station_type:StationType;
+}
+
+table MessageRateRange {
+  message_rate_min:MessageRateHz (required);
+  message_rate_max:MessageRateHz (required);
+}
+
+table OriginatingStationsContainer {
+  originating_vehicle_container:OriginatingVehicleContainer;
+  originating_rsu_container:OriginatingRSUContainer;
+}
+
+table OriginatingVehicleContainer {
+  orientation_angle:Wgs84Angle (required);
+  pitch_angle:CartesianAngle;
+  roll_angle:CartesianAngle;
+  trailer_dataset:long;
+}
+
+table OriginatingRSUContainer {
+  road_segment:RoadSegmentReferenceID (required);
+  intersection:IntersectionReferenceID (required);
+}
+
+table SensorInformationContainer {
+  sensor_information:[SensorInformation];
+}
+
+table SensorInformation {
+  sensor_id:long;
+  sensor_type:SensorType;
+  perception_region_shape:Shape (required);
+  perception_region_confidence:uint;
+  shadowing_applies:bool;
+}
+
+table PerceptionRegionContainer {
+  perception_region_list:[PerceptionRegion];
+}
+
+table PerceptionRegion {
+  measurement_delta_time:int;
+  perception_region_confidence:uint;
+  perception_region_shape:Shape (required);
+  shadowing_applies:bool;
+  sensor_id_list:[uint];
+  number_of_perceived_objects:uint;
+  perceived_object_ids:uint;
+}
+
+table PerceivedObjectContainer {
+  number_of_perceived_objects:uint;
+  perceived_objects:[PerceivedObject];
+}
+
+table PerceivedObject {
+  object_id:uint;
+  measurement_delta_time:int;
+  position:CartesianPosition3dWithConfidence (required);
+  velocity:Velocity3dWithConfidence;
+  acceleration:Acceleration3dWithConfidence;
+  angles:EulerAnglesWithConfidence;
+  z_angular_velocity:CartesianAngularVelocityComponent;
+  lower_triangular_correlation_matrices:[LowerTriangularPositiveSemidefiniteMatrix];
+  object_dimension_z:ObjectDimension;
+  object_dimension_y:ObjectDimension;
+  object_dimension_x:ObjectDimension;
+  object_age:uint;
+  object_perception_quality:uint;
+  sensor_id_list:[uint];
+  classification:[ObjectClassWithConfidence];
+  map_position:MapPosition (required);
+}
+
+
+// DENM
+
+enum Termination : int {
+  TRMNTN_IS_CANCELLATION = 0,
+  TRMNTN_IS_NEGATION = 1,
+}
+
+table DENMessage {
+  header:ItsPduHeader (required);
+  denm:DecentralizedEnvironmentalNotificationMessage (required);
+}
+
+table DecentralizedEnvironmentalNotificationMessage {
+  management:DenmManagementContainer (required);
+  situation:SituationContainer;
+  location:LocationContainer;
+  alacarte:AlacarteContainer;
+}
+
+table AlacarteContainer {
+  lane_position:int;
+  impact_reduction:ImpactReductionContainer;
+  external_temperature:int;
+  road_works:RoadWorksContainerExtended;
+  positioning_solution:PositioningSolutionType;
+  stationary_vehicle:StationaryVehicleContainer;
+}
+
+table ImpactReductionContainer {
+  height_lon_carr_left:uint;
+  height_lon_carr_right:uint;
+  pos_lon_carr_left:uint;
+  pos_lon_carr_right:uint;
+  position_of_pillars:[uint];
+  pos_cent_mass:uint;
+  wheel_base_vehicle:uint;
+  turning_radius:uint;
+  pos_front_ax:uint;
+  position_of_occupants:PositionOfOccupants;
+  vehicle_mass:uint;
+  request_response_indication:RequestResponseIndication;
+}
+
+table LocationContainer {
+  event_speed:Speed;
+  event_position_heading:Heading;
+  traces:uint;
+  road_type:RoadType;
+}
+
+table DenmManagementContainer {
+  action_id:ActionID (required);
+  detection_time:ulong;
+  reference_time:ulong;
+  termination:Termination;
+  event_position:ReferencePosition (required);
+  relevance_distance:RelevanceDistance;
+  relevance_traffic_direction:RelevanceTrafficDirection;
+  validity_duration:uint = 600;
+  transmission_interval:uint;
+  station_type:StationType;
+}
+
+table RoadWorksContainerExtended {
+  light_bar_siren_in_use:LightBarSirenInUse;
+  closed_lanes:ClosedLanes;
+  restriction:RestrictedTypes;
+  speed_limit:uint;
+  incident_indication:CauseCode;
+  recommended_path:ItineraryPath;
+  starting_point_speed_limit:DeltaReferencePosition;
+  traffic_flow_rule:TrafficRule;
+  reference_denms:ReferenceDenms;
+}
+
+table SituationContainer {
+  information_quality:uint;
+  event_type:CauseCode (required);
+  linked_cause:CauseCode;
+  event_history:EventHistory;
+}
+
+table StationaryVehicleContainer {
+  stationary_since:StationarySince;
+  stationary_cause:CauseCode;
+  carrying_dangerous_goods:DangerousGoodsExtended;
+  number_of_occupants:uint;
+  vehicle_identification:VehicleIdentification;
+  energy_storage_type:EnergyStorageType;
+}
+
+
+
+
+table Acceleration3dWithConfidence {
+  polar_acceleration:AccelerationPolarWithZ;
+  cartesian_acceleration:AccelerationCartesian;
+}
+
+struct AccelerationComponent {
+  value:int;
+  confidence:uint;
+}
+
+table AccelerationCartesian {
+  x_acceleration:AccelerationComponent (required);
+  y_acceleration:AccelerationComponent (required);
+  z_acceleration:AccelerationComponent;
+}
+
+table AccelerationMagnitude {
+  acceleration_magnitude_value:uint;
+  acceleration_confidence:uint;
+}
+
+table AccelerationPolarWithZ {
+  acceleration_magnitude:AccelerationMagnitude (required);
+  acceleration_direction:CartesianAngle (required);
+  z_acceleration:AccelerationComponent;
+}
+
+table ActionID {
+  originating_station_id:ulong;
+  sequence_number:uint;
+}
+
+table Altitude {
+  value:int;
+  confidence:uint;
+}
+
+table CartesianAngle {
+  cartesian_value:long;
+  cartesian_angle_confidence:long;
+}
+
+table CartesianAngularVelocityComponent {
+  value:int;
+  confidence:AngularSpeedConfidence;
+}
+
+table CartesianPosition3d {
+  x_cord:int;
+  y_cord:int;
+  z_cord:int;
+}
+
+table CartesianCoordinateWithConfidence {
+  value:int;
+  confidence:uint;
+}
+
+table CartesianPosition3dWithConfidence {
+  x_cord:CartesianCoordinateWithConfidence (required);
+  y_cord:CartesianCoordinateWithConfidence (required);
+  z_cord:CartesianCoordinateWithConfidence;
+}
+
+table CircularShape {
+  shape_ref_point:CartesianPosition3d;
+  radius:int;
+  height:uint;
+}
+
+table ClosedLanes {
+  inner_hard_shoulder_status:HardShoulderStatus;
+  outer_hard_shoulder_status:HardShoulderStatus;
+  driving_lane_status:uint;
+}
+
+table CorrelationColumn {
+  value:[int];
+}
+
+table Curvature {
+  value:int;
+  confidence:int;
+}
+
+table CauseCode {
+  cause_code:CauseCodeType;
+  sub_cause_code:uint;
+}
+
+table DangerousGoodsExtended {
+  dangerous_goods_type:DangerousGoodsBasic;
+  un_number:uint;
+  elevated_temperature:bool;
+  tunnels_restricted:bool;
+  limited_quantity:bool;
+  emergency_action_code:string;
+  phone_number:string;
+  company_name:string;
+}
+
+table DeltaReferencePosition {
+  delta_latitude:int;
+  delta_longitude:int;
+  delta_altitude:int;
+}
+
+table EnergyStorageType {
+  hydrogen_storage:bool;
+  electric_energy_storage:bool;
+  liquid_propane_gas:bool;
+  compressed_natural_gas:bool;
+  diesel:bool;
+  gasoline:bool;
+  ammonia:bool;
+}
+
+table EllipticalShape {
+  shape_reference_point:CartesianPosition3d;
+  semi_major_axis_length:uint;
+  semi_minor_axis_length:uint;
+  orientation:uint;
+  height:uint;
+}
+
+table EulerAnglesWithConfidence {
+  z_angle:CartesianAngle (required);
+  y_angle:CartesianAngle;
+  x_angle:CartesianAngle;
+}
+
+table EventHistory {
+  event_points:[EventPoint];
+}
+
+table EventPoint {
+  event_position:DeltaReferencePosition (required);
+  event_delta_time:uint;
+  information_quality:uint;
+}
+
+table Heading {
+  value:int;
+  confidence:uint;
+}
+
+table IntersectionReferenceID {
+  region:long;
+  id:long;
+}
+
+table ItineraryPath {
+  path:[ReferencePosition];
+}
+
+table LongitudinalAcceleration {
+  value:int;
+  confidence:int;
+}
+
+table LongitudinalLanePosition {
+  longitudinal_lane_position_value:uint;
+  longitudinal_lane_position_confidence:uint;
+}
+
+table LowerTriangularPositiveSemidefiniteMatrix {
+  components_included_in_the_matrix:MatrixIncludedComponents (required);
+  matrix:LowerTriangularPositiveSemidefiniteMatrixColumns (required);
+}
+
+table LowerTriangularPositiveSemidefiniteMatrixColumns {
+  columns:[CorrelationColumn];
+}
+
+table MapPosition {
+  map_reference:MapReference;
+  lane_id:uint;
+  connection_id:uint;
+  longitudinal_lane_position:LongitudinalLanePosition;
+}
+
+table MapReference {
+  road_segment:RoadSegmentReferenceID;
+  intersection:IntersectionReferenceID;
+}
+
+table MatrixIncludedComponents {
+  x_position:bool;
+  y_position:bool;
+  z_position:bool;
+  x_velocity_or_velocity_magnitude:bool;
+  y_velocity_or_velocity_direction:bool;
+  z_speed:bool;
+  x_accel_or_accel_magnitude:bool;
+  y_accel_or_accel_direction:bool;
+  z_acceleration:bool;
+  z_angle:bool;
+  y_angle:bool;
+  x_angle:bool;
+  z_angular_velocity:bool;
+}
+
+table MessageRateHz {
+  mantissa:uint;
+  exponent:int;
+}
+
+table MessageSegmentationInfo {
+  total_msg_no:uint;
+  this_msg_no:uint;
+}
+
+table ObjectClass {
+  vehicle_sub_class:TrafficParticipantType;
+  vru_sub_class:VruProfileAndSubprofile;
+  group_sub_class:VruClusterInformation;
+  other_sub_class:OtherSubClass;
+}
+
+table ObjectClassWithConfidence {
+  object_class:ObjectClass (required);
+  confidence:uint;
+}
+
+table ObjectDimension {
+  value:uint;
+  confidence:uint;
+}
+
+table OtherSubClass {
+  unknown:bool;
+  single_object:bool;
+  multiple_objects:bool;
+  bulk_material:bool;
+}
+
+table PolygonalShape {
+  shape_reference_point:CartesianPosition3d;
+  polygon:[CartesianPosition3d];
+  height:uint;
+}
+
+table PositionConfidenceEllipse {
+  semi_major_confidence:uint;
+  semi_minor_confidence:uint;
+  semi_major_orientation:uint;
+}
+
+table RadialShape {
+  shared_ref_point:CartesianPosition3d;
+  range:uint;
+  stationary_horizontal_opening_angle_start:uint;
+  stationary_horizontal_opening_angle_end:uint;
+  vertical_opening_angle_start:uint;
+  vertical_opening_angle_end:uint;
+}
+
+table RadialShapes {
+  ref_point_id:uint;
+  x_coord:int;
+  y_coord:int;
+  z_coord:int;
+  radial_shapes_list:[RadialShapeDetails];
+}
+
+table RadialShapeDetails {
+  range:int;
+  horizontal_opening_angle_start:uint;
+  horizontal_opening_angle_end:uint;
+  vertical_opening_angle_start:uint;
+  vertical_opening_angle_end:uint;
+}
+
+table RectangularShape {
+  center_point:CartesianPosition3d;
+  semi_length:uint;
+  semi_breadth:uint;
+  orientation:uint;
+  height:uint;
+}
+
+table ReferenceDenms {
+  action_ids:[ActionID];
+}
+
+table ReferencePosition {
+  latitude:long;
+  longitude:long;
+  position_confidence:PositionConfidenceEllipse (required);
+  altitude:Altitude (required);
+}
+
+table RestrictedTypes {
+  restricted_vehicles:[StationType];
+}
+
+table RoadSegmentReferenceID {
+  region:long;
+  id:long;
+}
+
+table Shape {
+  rectangular:RectangularShape;
+  circular:CircularShape;
+  polygonal:PolygonalShape;
+  elliptical:EllipticalShape;
+  radial:RadialShape;
+  radial_shapes:RadialShapes;
+}
+
+table Speed {
+  value:int;
+  confidence:uint;
+}
+
+table VehicleIdentification {
+  wmi_number:string;
+  vds:string;
+}
+
+table VehicleLength {
+  value:int;
+  veh_len_conf_ind:VehicleLengthConfidenceIndication;
+}
+
+table VehicleWidth {
+  value:int;
+}
+
+table VelocityCartesian {
+  x_velocity:VelocityComponent (required);
+  y_velocity:VelocityComponent (required);
+  z_velocity:VelocityComponent;
+}
+
+table VelocityComponent {
+  vel_comp_value:int;
+  speed_confidence:uint;
+}
+
+table VelocityPolarWithZ {
+  velocity_magnitude:Speed (required);
+  velocity_direction:CartesianAngle (required);
+  z_velocity:VelocityComponent;
+}
+
+table Velocity3dWithConfidence {
+  polar_velocity:VelocityPolarWithZ;
+  cartesian_velocity:VelocityCartesian;
+}
+
+table VruClusterProfiles {
+  pedestrian:bool;
+  bicyclist:bool;
+  motorcyclist:bool;
+  animal:bool;
+}
+
+table VruClusterInformation {
+  cluster_id:uint;
+  cluster_bounding_box_shape:Shape;
+  cluster_cardinality_size:uint;
+  cluster_profiles:VruClusterProfiles;
+}
+
+table VruProfileAndSubprofile {
+  pedestrian:VruSubProfilePedestrian;
+  bicyclist_and_light_vru_vehicle:VruSubProfileBicyclist;
+  motorcyclist:VruSubProfileMotorcyclist;
+  animal:VruSubProfileAnimal;
+}
+
+table Wgs84Angle {
+  wgs_angle_value:uint;
+  wgs84_angle_confidence:uint;
+}
+
+table YawRate {
+  yaw_rate_value:int;
+  yaw_rate_confidence:YawRateConfidence;
+}
+
+
+
+
+
+
+
+root_type GossipMessage;

@@ -5,6 +5,7 @@
 #include <ros/message_operations.h>
 #include <sstream>
 #include "cpm_interfaces/PerceivedObjectContainer.h"
+#include "etsi_msg_interface_generated.h"
 // #include "gossip_msg_generated.h"
 // #include "cpm_interface_generated.h"
 #include "all_interface_generated.h"
@@ -53,7 +54,7 @@ private:
     {
         ostringstream oss;
         ros::message_operations::Printer<cpm_interfaces::PerceivedObjectContainer>::stream(oss, "", *msg);
-        ROS_INFO("----------------------------------------------------------------------------------");
+        ROS_INFO("****************");
         ROS_INFO("%s", oss.str().c_str());
     }
 
@@ -62,9 +63,12 @@ private:
         if (!error)
         {
             auto msg = GetGossipMessage(recv_buffer_.data());
+
             // Check the type of the `gossip` field and handle each type.
+
             switch (msg->gossip_type())
             {
+                // ROS_INFO("");
             case GossipType_ChannelBusyRatio:
             {
                 auto busy_ratio = msg->gossip_as_ChannelBusyRatio();
@@ -92,6 +96,7 @@ private:
             {
                 auto fl_reception = msg->gossip_as_FacilityLayerReception();
                 auto fl_msg = fl_reception->msg();
+                ROS_INFO("FacilityLayerReception: ");
                 if (fl_msg->cam_msg() != nullptr)
                 {
                     auto cam_msg = fl_msg->cam_msg();

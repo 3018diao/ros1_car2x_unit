@@ -14,7 +14,7 @@ def send_message():
     perceivedObjectContainer.numberOfPerceivedObjects = 1
     perceivedObject = PerceivedObject()
     perceivedObject.objectID = 1
-    perceivedObject.a = 0
+    # perceivedObject.a = 0
 
     cartesianPosition3dWithConfidence = CartesianPosition3dWithConfidence()
 
