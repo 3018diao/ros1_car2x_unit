@@ -3,3 +3,4 @@ uint8 AN_WILD_ANIMAL=1
 uint8 AN_FARM_ANIMAL=2
 uint8 AN_SERVICE_ANIMAL=3
 uint8 AN_MAX=15
+uint8 type

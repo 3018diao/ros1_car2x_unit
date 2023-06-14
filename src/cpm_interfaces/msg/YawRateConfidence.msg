@@ -7,3 +7,4 @@ uint8 YRC_degSec_010_00=5
 uint8 YRC_degSec_100_00=6
 uint8 YRC_OutOfRange=7
 uint8 YRC_UNAVAILABLE=8
+uint8 type
