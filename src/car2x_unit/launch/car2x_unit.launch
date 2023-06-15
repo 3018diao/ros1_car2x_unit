@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="car2x_unit" type="car2x_unit" name="car2x_unit" output="screen">
+        <param name="ip_address" value="127.0.0.1" />
+        <param name="local_port" value="12346" />
+        <param name="remote_port" value="12345" />
+    </node>
+</launch>

@@ -21,10 +21,9 @@ using namespace std;
 // using namespace cpm_interfaces;
 using namespace Gos;
 
-std::string ip_address = "127.0.0.1";
-unsigned short local_port = 12346;
-unsigned short remote_port = 12345;
-
+/**
+ * @brief Convert a flatbuffers vector to a std::vector.
+ */
 template <typename T>
 std::vector<T> ConvertFlatbuffersVector(const flatbuffers::Vector<T> *fbVector)
 {
@@ -37,6 +36,13 @@ std::vector<T> ConvertFlatbuffersVector(const flatbuffers::Vector<T> *fbVector)
     return result;
 }
 
+/**
+ * @brief Class for the car2x unit.
+ *
+ * This class is responsible for the communication with the car2x unit.
+ * It sends and receives messages to/from the cohda-box.
+ *
+ */
 class Car2xUnit
 {
 public:
@@ -72,6 +78,11 @@ private:
                         boost::asio::placeholders::bytes_transferred));
     }
 
+    /**
+     * @brief Callback function for the collective perception topic.
+     *
+     * @param msg
+     */
     void collectivePerceptionCallback(const cpm_interfaces::PerceivedObjectContainer::ConstPtr &rosPerceivedObjectContainer)
     {
         flatbuffers::FlatBufferBuilder builder;
@@ -322,10 +333,16 @@ private:
         else
         {
             // cout << "Failed to send message: " << error.message() << endl;
-            ROS_INFO("Failed to send message: %s", error.message().c_str());
+            ROS_ERROR("Failed to send message: %s", error.message().c_str());
         }
     }
 
+    /**
+     * @brief Handle the received message.
+     *
+     * @param error
+     * @param bytes_transferred
+     */
     void handle_receive(const boost::system::error_code &error, size_t bytes_transferred)
     {
         if (!error)
@@ -880,6 +897,10 @@ private:
             publisher_.publish(rosGossipMessage);
             start_receive();
         }
+        else
+        {
+            ROS_ERROR("Error in receiving data: %s", error.message().c_str());
+        }
     }
 
 private:
@@ -892,9 +913,26 @@ private:
     unique_ptr<thread> io_thread_;
 };
 
+/**
+ * @brief Main function of the car2x unit node
+ */
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "car2x_unit");
+
+    ros::NodeHandle nh("~"); // "~" means private NodeHandle
+    std::string ip_address;
+    int local_port, remote_port;
+
+    // The second parameter to param() is the default value to use if the parameter was not set
+    nh.param<std::string>("ip_address", ip_address, "127.0.0.1");
+    nh.param<int>("local_port", local_port, 12346);
+    nh.param<int>("remote_port", remote_port, 12345);
+
+    ROS_INFO("IP Address: %s", ip_address.c_str());
+    ROS_INFO("Local Port: %d", local_port);
+    ROS_INFO("Remote Port: %d", remote_port);
+
     Car2xUnit node(ip_address, local_port, remote_port);
     ros::spin();
     return 0;
