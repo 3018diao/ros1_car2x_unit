@@ -37,7 +37,7 @@ if __name__ == '__main__':
     rospy.init_node('message_sender')
     pub = rospy.Publisher('collective_perception', PerceivedObjectContainer, queue_size=10)
     # pub = rospy.Publisher('collective_perception', PerceivedObjectContainer, queue_size=10)
-    rate = rospy.Rate(2)  
+    rate = rospy.Rate(50)  
 
     while not rospy.is_shutdown():
         send_message()

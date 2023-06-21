@@ -1,15 +1,11 @@
 #include <ros/ros.h>
 #include "std_msgs/String.h"
-// #include "cpm_interface.pb.h"
 #include <boost/array.hpp>
 #include <boost/bind/bind.hpp>
 #include <boost/asio.hpp>
 #include <ros/message_operations.h>
 #include <sstream>
 #include "cpm_interfaces/PerceivedObjectContainer.h"
-#include "etsi_msg_interface_generated.h"
-// #include "gossip_msg_generated.h"
-// #include "cpm_interface_generated.h"
 #include "all_interface_generated.h"
 #include "cpm_interfaces/GossipMessage.h"
 #include <chrono>
@@ -17,17 +13,15 @@
 using namespace Gos;
 using boost::asio::ip::udp;
 using namespace std;
-// using namespace Gossip;
-// using namespace cpm_interfaces;
 using namespace Gos;
 
 /**
  * @brief Convert a flatbuffers vector to a std::vector.
  */
 template <typename T>
-std::vector<T> ConvertFlatbuffersVector(const flatbuffers::Vector<T> *fbVector)
+vector<T> ConvertFlatbuffersVector(const flatbuffers::Vector<T> *fbVector)
 {
-    std::vector<T> result;
+    vector<T> result;
     result.reserve(fbVector->size());
     for (const auto &value : *fbVector)
     {
@@ -46,7 +40,7 @@ std::vector<T> ConvertFlatbuffersVector(const flatbuffers::Vector<T> *fbVector)
 class Car2xUnit
 {
 public:
-    Car2xUnit(const std::string &ip_address, unsigned short local_port, unsigned short remote_port)
+    Car2xUnit(const string &ip_address, unsigned short local_port, unsigned short remote_port)
     {
         ros::NodeHandle nh;
         publisher_ = nh.advertise<cpm_interfaces::GossipMessage>("cpm", 10);
@@ -86,9 +80,7 @@ private:
     void collectivePerceptionCallback(const cpm_interfaces::PerceivedObjectContainer::ConstPtr &rosPerceivedObjectContainer)
     {
         flatbuffers::FlatBufferBuilder builder;
-
         vector<flatbuffers::Offset<Gos::PerceivedObject>> perceived_objects;
-
         auto perceivedObjects = rosPerceivedObjectContainer->perceivedObjects;
 
         for (const auto &perceivedObject : perceivedObjects)
@@ -126,72 +118,72 @@ private:
 
             // acceleration
 
-            auto acceleration_magnitude = Gos::CreateAccelerationMagnitude(builder, perceivedObject.acceleration.polarAcceleration.accelerationMagnitude.accelerationMagnitudeValue, perceivedObject.acceleration.polarAcceleration.accelerationMagnitude.accelerationConfidence);
+            // auto acceleration_magnitude = Gos::CreateAccelerationMagnitude(builder, perceivedObject.acceleration.polarAcceleration.accelerationMagnitude.accelerationMagnitudeValue, perceivedObject.acceleration.polarAcceleration.accelerationMagnitude.accelerationConfidence);
 
-            auto acceleration_direction = Gos::CreateCartesianAngle(builder, perceivedObject.acceleration.polarAcceleration.accelerationDirection.cartesian_value, perceivedObject.acceleration.polarAcceleration.accelerationDirection.cartesian_angle_confidence);
+            // auto acceleration_direction = Gos::CreateCartesianAngle(builder, perceivedObject.acceleration.polarAcceleration.accelerationDirection.cartesian_value, perceivedObject.acceleration.polarAcceleration.accelerationDirection.cartesian_angle_confidence);
 
             // auto z_acceleration = Gos::CreateAccel(builder);
 
-            Gos::AccelerationComponent polar_z_acceleration(perceivedObject.acceleration.polarAcceleration.zAcceleration.value, perceivedObject.acceleration.polarAcceleration.zAcceleration.confidence);
+            // Gos::AccelerationComponent polar_z_acceleration(perceivedObject.acceleration.polarAcceleration.zAcceleration.value, perceivedObject.acceleration.polarAcceleration.zAcceleration.confidence);
 
-            auto polar_acceleration = Gos::CreateAccelerationPolarWithZ(builder, acceleration_magnitude, acceleration_direction, &polar_z_acceleration);
+            // auto polar_acceleration = Gos::CreateAccelerationPolarWithZ(builder, acceleration_magnitude, acceleration_direction, &polar_z_acceleration);
 
-            Gos::AccelerationComponent x_acceleration(perceivedObject.acceleration.cartesianAcceleration.xAcceleration.value, perceivedObject.acceleration.cartesianAcceleration.xAcceleration.confidence);
+            // Gos::AccelerationComponent x_acceleration(perceivedObject.acceleration.cartesianAcceleration.xAcceleration.value, perceivedObject.acceleration.cartesianAcceleration.xAcceleration.confidence);
 
-            Gos::AccelerationComponent y_acceleration(perceivedObject.acceleration.cartesianAcceleration.yAcceleration.value, perceivedObject.acceleration.cartesianAcceleration.yAcceleration.confidence);
+            // Gos::AccelerationComponent y_acceleration(perceivedObject.acceleration.cartesianAcceleration.yAcceleration.value, perceivedObject.acceleration.cartesianAcceleration.yAcceleration.confidence);
 
-            Gos::AccelerationComponent z_acceleration(perceivedObject.acceleration.cartesianAcceleration.zAcceleration.value, perceivedObject.acceleration.cartesianAcceleration.zAcceleration.confidence);
+            // Gos::AccelerationComponent z_acceleration(perceivedObject.acceleration.cartesianAcceleration.zAcceleration.value, perceivedObject.acceleration.cartesianAcceleration.zAcceleration.confidence);
 
-            auto cartesian_acceleration = Gos::CreateAccelerationCartesian(builder, &x_acceleration, &y_acceleration, &z_acceleration);
+            // auto cartesian_acceleration = Gos::CreateAccelerationCartesian(builder, &x_acceleration, &y_acceleration, &z_acceleration);
 
-            auto acceleration = Gos::CreateAcceleration3dWithConfidence(builder, polar_acceleration, cartesian_acceleration);
+            // auto acceleration = Gos::CreateAcceleration3dWithConfidence(builder, polar_acceleration, cartesian_acceleration);
 
             // angles
 
-            auto z_angle = Gos::CreateCartesianAngle(builder, perceivedObject.angles.zAngle.cartesian_value, perceivedObject.angles.zAngle.cartesian_angle_confidence);
+            // auto z_angle = Gos::CreateCartesianAngle(builder, perceivedObject.angles.zAngle.cartesian_value, perceivedObject.angles.zAngle.cartesian_angle_confidence);
 
-            auto y_angle = Gos::CreateCartesianAngle(builder, perceivedObject.angles.yAngle.cartesian_value, perceivedObject.angles.yAngle.cartesian_angle_confidence);
+            // auto y_angle = Gos::CreateCartesianAngle(builder, perceivedObject.angles.yAngle.cartesian_value, perceivedObject.angles.yAngle.cartesian_angle_confidence);
 
-            auto x_angle = Gos::CreateCartesianAngle(builder, perceivedObject.angles.xAngle.cartesian_value, perceivedObject.angles.xAngle.cartesian_angle_confidence);
+            // auto x_angle = Gos::CreateCartesianAngle(builder, perceivedObject.angles.xAngle.cartesian_value, perceivedObject.angles.xAngle.cartesian_angle_confidence);
 
-            auto angles = Gos::CreateEulerAnglesWithConfidence(builder, z_angle, y_angle, x_angle);
+            // auto angles = Gos::CreateEulerAnglesWithConfidence(builder, z_angle, y_angle, x_angle);
 
             // z_angular_velocity
 
-            auto z_angular_velocity_confidence = static_cast<Gos::AngularSpeedConfidence>(perceivedObject.zAngularVelocity.confidence.confi);
+            // auto z_angular_velocity_confidence = static_cast<Gos::AngularSpeedConfidence>(perceivedObject.zAngularVelocity.confidence.confi);
 
-            auto z_angular_velocity = Gos::CreateCartesianAngularVelocityComponent(builder, perceivedObject.zAngularVelocity.value, z_angular_velocity_confidence);
+            // auto z_angular_velocity = Gos::CreateCartesianAngularVelocityComponent(builder, perceivedObject.zAngularVelocity.value, z_angular_velocity_confidence);
 
             // lower_triangular_correlation_matrices
 
-            vector<flatbuffers::Offset<Gos::LowerTriangularPositiveSemidefiniteMatrix>> lower_triangular_correlation_matrices;
+            // vector<flatbuffers::Offset<Gos::LowerTriangularPositiveSemidefiniteMatrix>> lower_triangular_correlation_matrices;
 
-            auto lowerTriangularCorrelationMatrices = perceivedObject.lowerTriangularCorrelationMatrices;
+            // auto lowerTriangularCorrelationMatrices = perceivedObject.lowerTriangularCorrelationMatrices;
 
-            for (const auto &lowerTriangularCorrelationMatrix : lowerTriangularCorrelationMatrices)
-            {
-                auto components_included_in_the_matrix = Gos::CreateMatrixIncludedComponents(builder,
-                                                                                             lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.xPosition,
-                                                                                             lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.yPosition,
-                                                                                             lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.zPosition,
-                                                                                             lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.xVelocityOrVelocityMagnitude,
-                                                                                             lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.yVelocityOrVelocityDirection,
-                                                                                             lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.zSpeed,
-                                                                                             lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.xAccelOrAccelMagnitude,
-                                                                                             lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.yAccelOrAccelDirection,
-                                                                                             lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.zAcceleration,
-                                                                                             lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.zAngle,
-                                                                                             lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.yAngle,
-                                                                                             lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.xAngle,
-                                                                                             lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.zAngularVelocity);
+            // for (const auto &lowerTriangularCorrelationMatrix : lowerTriangularCorrelationMatrices)
+            // {
+            //     auto components_included_in_the_matrix = Gos::CreateMatrixIncludedComponents(builder,
+            //                                                                                  lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.xPosition,
+            //                                                                                  lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.yPosition,
+            //                                                                                  lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.zPosition,
+            //                                                                                  lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.xVelocityOrVelocityMagnitude,
+            //                                                                                  lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.yVelocityOrVelocityDirection,
+            //                                                                                  lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.zSpeed,
+            //                                                                                  lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.xAccelOrAccelMagnitude,
+            //                                                                                  lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.yAccelOrAccelDirection,
+            //                                                                                  lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.zAcceleration,
+            //                                                                                  lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.zAngle,
+            //                                                                                  lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.yAngle,
+            //                                                                                  lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.xAngle,
+            //                                                                                  lowerTriangularCorrelationMatrix.componentsIncludedIntheMatrix.zAngularVelocity);
 
-                auto matrix = Gos::CreateLowerTriangularPositiveSemidefiniteMatrixColumns(builder);
+            //     auto matrix = Gos::CreateLowerTriangularPositiveSemidefiniteMatrixColumns(builder);
 
-                auto lower_triangular_correlation_matrix = Gos::CreateLowerTriangularPositiveSemidefiniteMatrix(builder, components_included_in_the_matrix, matrix);
-                lower_triangular_correlation_matrices.push_back(lower_triangular_correlation_matrix);
-            }
+            //     auto lower_triangular_correlation_matrix = Gos::CreateLowerTriangularPositiveSemidefiniteMatrix(builder, components_included_in_the_matrix, matrix);
+            //     lower_triangular_correlation_matrices.push_back(lower_triangular_correlation_matrix);
+            // }
 
-            auto lower_triangular_correlation_matrices_vector = builder.CreateVector(lower_triangular_correlation_matrices);
+            // auto lower_triangular_correlation_matrices_vector = builder.CreateVector(lower_triangular_correlation_matrices);
 
             // object_dimension
 
@@ -203,9 +195,9 @@ private:
 
             // sensor_id_list
 
-            vector<uint32_t> sensor_ids = {1, 2, 3};
+            // vector<uint32_t> sensor_ids = {1, 2, 3};
 
-            auto sensor_id_list = builder.CreateVector(perceivedObject.sensorIdList);
+            // auto sensor_id_list = builder.CreateVector(perceivedObject.sensorIdList);
 
             //
             vector<flatbuffers::Offset<Gos::ObjectClassWithConfidence>> rosClassification;
@@ -233,22 +225,22 @@ private:
 
             // todo: add the values to the dimensions
             auto perceived_object = Gos::CreatePerceivedObject(builder,
-                                                               perceivedObject.objectID,
-                                                               perceivedObject.measurementDeltaTime,
-                                                               position,
-                                                               velocity,
-                                                               acceleration,
-                                                               angles,
-                                                               z_angular_velocity,
-                                                               lower_triangular_correlation_matrices_vector,
-                                                               object_dimension_z,
-                                                               object_dimension_y,
-                                                               object_dimension_x,
-                                                               perceivedObject.objectAge,
-                                                               perceivedObject.objectPerceptionQuality,
-                                                               sensor_id_list,
-                                                               classification,
-                                                               map_position);
+                                                               perceivedObject.objectID,             // object_id
+                                                               perceivedObject.measurementDeltaTime, // measurement_delta_time
+                                                               position,                             // position
+                                                               velocity,                             // velocity
+                                                                                                     //    acceleration,                         // acceleration
+                                                                                                     //    angles,                               // angles
+                                                                                                     //    z_angular_velocity,                   // z_angular_velocity
+                                                                                                     //    lower_triangular_correlation_matrices_vector, // lower_triangular_correlation_matrices
+                                                               object_dimension_z,                   // object_dimension_z
+                                                               object_dimension_y,                   // object_dimension_y
+                                                               object_dimension_x,                   // object_dimension_x
+                                                               perceivedObject.objectAge,            // object_age
+                                                                                                     //    perceivedObject.objectPerceptionQuality,      // object_perception_quality
+                                                                                                     //    sensor_id_list,                       // sensor_id_list
+                                                               classification,                       // classification
+                                                               map_position);                        // map_position
 
             perceived_objects.push_back(perceived_object);
         }
@@ -273,11 +265,11 @@ private:
 
         auto management_container = CreateManagementContainer(builder, 0, referencePosition);
 
-        auto now = std::chrono::system_clock::now();
+        auto now = chrono::system_clock::now();
 
         auto duration = now.time_since_epoch();
 
-        auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
+        auto milliseconds = chrono::duration_cast<chrono::milliseconds>(duration).count();
 
         int timestampMs = static_cast<int>(milliseconds);
 
@@ -297,18 +289,20 @@ private:
 
         // auto cam_msg = Gos::CreateCAMessage(builder, cam_its_pdu_header, 0, Gos::StationType_STN_TYPE_UNKNOWN, referencePosition, 0);
 
-        auto facility_layer_message = Gos::CreateFacilityLayerMessage(builder, 0, cpm_msg);
+        // auto facility_layer_message = Gos::CreateFacilityLayerMessage(builder, 0, cpm_msg);
 
-        auto facility_layer_reception = CreateFacilityLayerReception(builder, facility_layer_message);
+        // auto facility_layer_message = Gos::CreateFacilityLayerMessage(builder, FacilityLayerMessage_CPMessage, cpm_msg.Union());
 
-        auto gossip_message = CreateGossipMessage(builder, GossipType_FacilityLayerReception, facility_layer_reception.Union());
+        auto facility_layer_reception = Gos::CreateFacilityLayerReception(builder, FacilityLayerMessage_CPMessage, cpm_msg.Union());
+
+        auto gossip_message = Gos::CreateGossipMessage(builder, GossipType_FacilityLayerReception, facility_layer_reception.Union());
 
         builder.Finish(gossip_message);
 
         uint8_t *buf = builder.GetBufferPointer();
         int size = builder.GetSize();
 
-        boost::shared_ptr<std::vector<uint8_t>> message(new std::vector<uint8_t>(buf, buf + size));
+        boost::shared_ptr<vector<uint8_t>> message(new vector<uint8_t>(buf, buf + size));
 
         socket_->async_send_to(boost::asio::buffer(*message), remote_endpoint_,
                                boost::bind(&Car2xUnit::handle_send, this, message,
@@ -328,7 +322,7 @@ private:
         if (!error)
         {
             // cout << "Message sent! Bytes transferred: " << bytes_transferred << endl;
-            ROS_INFO("Message sent! Bytes transferred: %d", bytes_transferred);
+            ROS_INFO("Message sent! Bytes transferred: %ld", bytes_transferred);
         }
         else
         {
@@ -380,13 +374,17 @@ private:
             }
             case GossipType_FacilityLayerReception:
             {
+                ROS_INFO("FacilityLayerReception: ");
                 rosGossipMessage.is_facilitylayer_rx = true;
                 auto fl_reception = gossipMessage->gossip_as_FacilityLayerReception();
-                auto fl_msg = fl_reception->msg();
-                ROS_INFO("FacilityLayerReception: ");
-                if (fl_msg->cam_msg() != nullptr)
+                // auto fl_msg = fl_reception->msg_type();
+
+                switch (fl_reception->msg_type())
                 {
-                    auto cam_msg = fl_msg->cam_msg();
+
+                case FacilityLayerMessage_CAMessage:
+                {
+                    auto cam_msg = fl_reception->msg_as_CAMessage();
 
                     rosGossipMessage.facilitylayer_rx.msg.cam_msg.generation_delta_time = cam_msg->generation_delta_time();
 
@@ -438,10 +436,14 @@ private:
                     {
                         rosGossipMessage.facilitylayer_rx.msg.cam_msg.low_frequency_container.temp2 = low_frequency_container->temp2();
                     }
+                    break;
                 }
-                if (fl_msg->cpm_msg() != nullptr)
+
+                case FacilityLayerMessage_CPMessage:
                 {
-                    auto cpm_msg = fl_msg->cpm_msg();
+                    auto cpm_msg = fl_reception->msg_as_CPMessage();
+
+                    // auto cpm_msg = fl_msg->cpm_msg();
                     // Access the fields of the CPMessage
                     auto generation_delta_time = cpm_msg->generation_delta_time();
                     rosGossipMessage.facilitylayer_rx.msg.cpm_msg.generation_delta_time = generation_delta_time;
@@ -493,7 +495,6 @@ private:
                         rosGossipMessage.facilitylayer_rx.msg.cpm_msg.mgmt_cntnr.stationtype.statype = station_type;
                     }
 
-                    // Access the fields of the CpmPayload
                     if (cpm_payload != nullptr)
                     {
 
@@ -723,12 +724,6 @@ private:
                                     rosPerceivedObject.objectID = perceived_object->object_id();
                                     rosPerceivedObject.measurementDeltaTime = perceived_object->measurement_delta_time();
                                     rosPerceivedObject.objectAge = perceived_object->object_age();
-                                    rosPerceivedObject.objectPerceptionQuality = perceived_object->object_perception_quality();
-                                    rosPerceivedObject.sensorIdList = ConvertFlatbuffersVector(perceived_object->sensor_id_list());
-                                    // for (auto sensor_id : *perceived_object->sensor_id_list())
-                                    // {
-                                    //     rosPerceivedObject.sensorIdList.push_back(sensor_id);
-                                    // }
                                     auto position = perceived_object->position();
                                     if (position != nullptr)
                                     {
@@ -752,82 +747,6 @@ private:
                                         rosPerceivedObject.velocity.polarVelocity.velocityDirection.cartesian_angle_confidence = velocity->polar_velocity()->velocity_direction()->cartesian_angle_confidence();
                                         rosPerceivedObject.velocity.polarVelocity.zVelocity.vel_comp_value = velocity->polar_velocity()->z_velocity()->vel_comp_value();
                                         rosPerceivedObject.velocity.polarVelocity.zVelocity.speed_confidence = velocity->polar_velocity()->z_velocity()->speed_confidence();
-                                    }
-                                    auto acceleration = perceived_object->acceleration();
-                                    if (acceleration != nullptr)
-                                    {
-                                        rosPerceivedObject.acceleration.polarAcceleration.accelerationMagnitude.accelerationMagnitudeValue = acceleration->polar_acceleration()->acceleration_magnitude()->acceleration_magnitude_value();
-                                        rosPerceivedObject.acceleration.polarAcceleration.accelerationMagnitude.accelerationConfidence = acceleration->polar_acceleration()->acceleration_magnitude()->acceleration_confidence();
-                                        rosPerceivedObject.acceleration.polarAcceleration.accelerationDirection.cartesian_value = acceleration->polar_acceleration()->acceleration_direction()->cartesian_value();
-                                        rosPerceivedObject.acceleration.polarAcceleration.accelerationDirection.cartesian_angle_confidence = acceleration->polar_acceleration()->acceleration_direction()->cartesian_angle_confidence();
-                                        if (acceleration->polar_acceleration()->z_acceleration() != nullptr)
-                                        {
-                                            rosPerceivedObject.acceleration.polarAcceleration.zAcceleration.value = acceleration->polar_acceleration()->z_acceleration()->value();
-                                            rosPerceivedObject.acceleration.polarAcceleration.zAcceleration.confidence = acceleration->polar_acceleration()->z_acceleration()->confidence();
-                                        }
-                                    }
-
-                                    auto angles = perceived_object->angles();
-                                    if (angles != nullptr)
-                                    {
-                                        rosPerceivedObject.angles.zAngle.cartesian_value = angles->z_angle()->cartesian_value();
-                                        rosPerceivedObject.angles.zAngle.cartesian_angle_confidence = angles->z_angle()->cartesian_angle_confidence();
-
-                                        if (angles->x_angle() != nullptr)
-                                        {
-                                            rosPerceivedObject.angles.xAngle.cartesian_value = angles->x_angle()->cartesian_value();
-                                            rosPerceivedObject.angles.xAngle.cartesian_angle_confidence = angles->x_angle()->cartesian_angle_confidence();
-                                        }
-                                        if (angles->y_angle() != nullptr)
-                                        {
-                                            rosPerceivedObject.angles.yAngle.cartesian_value = angles->y_angle()->cartesian_value();
-                                            rosPerceivedObject.angles.yAngle.cartesian_angle_confidence = angles->y_angle()->cartesian_angle_confidence();
-                                        }
-                                    }
-
-                                    auto z_angular_velocity = perceived_object->z_angular_velocity();
-                                    if (z_angular_velocity != nullptr)
-                                    {
-                                        rosPerceivedObject.zAngularVelocity.value = z_angular_velocity->value();
-                                        rosPerceivedObject.zAngularVelocity.confidence.confi = z_angular_velocity->confidence();
-                                    }
-                                    auto lower_triangular_correlation_matrices = perceived_object->lower_triangular_correlation_matrices();
-                                    if (lower_triangular_correlation_matrices != nullptr)
-                                    {
-                                        for (auto lower_triangular_correlation_matrix : *lower_triangular_correlation_matrices)
-                                        {
-                                            cpm_interfaces::LowerTriangularPositiveSemidefiniteMatrix rosLowerTriangularPositiveSemidefiniteMatrix;
-
-                                            rosLowerTriangularPositiveSemidefiniteMatrix.componentsIncludedIntheMatrix.xPosition = lower_triangular_correlation_matrix->components_included_in_the_matrix()->x_position();
-                                            rosLowerTriangularPositiveSemidefiniteMatrix.componentsIncludedIntheMatrix.yPosition = lower_triangular_correlation_matrix->components_included_in_the_matrix()->y_position();
-                                            rosLowerTriangularPositiveSemidefiniteMatrix.componentsIncludedIntheMatrix.zPosition = lower_triangular_correlation_matrix->components_included_in_the_matrix()->z_position();
-                                            rosLowerTriangularPositiveSemidefiniteMatrix.componentsIncludedIntheMatrix.xVelocityOrVelocityMagnitude = lower_triangular_correlation_matrix->components_included_in_the_matrix()->x_velocity_or_velocity_magnitude();
-                                            rosLowerTriangularPositiveSemidefiniteMatrix.componentsIncludedIntheMatrix.yVelocityOrVelocityDirection = lower_triangular_correlation_matrix->components_included_in_the_matrix()->y_velocity_or_velocity_direction();
-                                            rosLowerTriangularPositiveSemidefiniteMatrix.componentsIncludedIntheMatrix.zSpeed = lower_triangular_correlation_matrix->components_included_in_the_matrix()->z_speed();
-                                            rosLowerTriangularPositiveSemidefiniteMatrix.componentsIncludedIntheMatrix.xAccelOrAccelMagnitude = lower_triangular_correlation_matrix->components_included_in_the_matrix()->x_accel_or_accel_magnitude();
-                                            rosLowerTriangularPositiveSemidefiniteMatrix.componentsIncludedIntheMatrix.yAccelOrAccelDirection = lower_triangular_correlation_matrix->components_included_in_the_matrix()->y_accel_or_accel_direction();
-                                            rosLowerTriangularPositiveSemidefiniteMatrix.componentsIncludedIntheMatrix.zAcceleration = lower_triangular_correlation_matrix->components_included_in_the_matrix()->z_acceleration();
-                                            rosLowerTriangularPositiveSemidefiniteMatrix.componentsIncludedIntheMatrix.zAngle = lower_triangular_correlation_matrix->components_included_in_the_matrix()->z_angle();
-                                            rosLowerTriangularPositiveSemidefiniteMatrix.componentsIncludedIntheMatrix.yAngle = lower_triangular_correlation_matrix->components_included_in_the_matrix()->y_angle();
-                                            rosLowerTriangularPositiveSemidefiniteMatrix.componentsIncludedIntheMatrix.xAngle = lower_triangular_correlation_matrix->components_included_in_the_matrix()->x_angle();
-                                            rosLowerTriangularPositiveSemidefiniteMatrix.componentsIncludedIntheMatrix.zAngularVelocity = lower_triangular_correlation_matrix->components_included_in_the_matrix()->z_angular_velocity();
-
-                                            auto columns = lower_triangular_correlation_matrix->matrix()->columns();
-                                            if (columns != nullptr)
-                                            {
-                                                for (auto column : *columns)
-                                                {
-                                                    cpm_interfaces::CorrelationColumn rosCorrelationColumn;
-                                                    rosCorrelationColumn.value = ConvertFlatbuffersVector(column->value());
-                                                    // for (auto value : *column->value())
-                                                    // {
-                                                    //     rosCorrelationColumn.value.push_back(value);
-                                                    // }
-                                                    rosLowerTriangularPositiveSemidefiniteMatrix.matrix.columns.push_back(rosCorrelationColumn);
-                                                }
-                                            }
-                                            rosPerceivedObject.lowerTriangularCorrelationMatrices.push_back(rosLowerTriangularPositiveSemidefiniteMatrix);
-                                        }
                                     }
                                     auto object_dimension_z = perceived_object->object_dimension_z();
                                     if (object_dimension_z != nullptr)
@@ -858,10 +777,10 @@ private:
                                             cpm_interfaces::ObjectClassWithConfidence rosObjectClassWithConfidence;
                                             rosObjectClassWithConfidence.confidence = object_class_with_confidence->confidence();
                                             rosObjectClassWithConfidence.objectClass.vehicleSubClass.type = object_class_with_confidence->object_class()->vehicle_sub_class();
-                                            rosObjectClassWithConfidence.objectClass.vruSubClass.pedestrian.type = object_class_with_confidence->object_class()->vru_sub_class()->pedestrian();
-                                            rosObjectClassWithConfidence.objectClass.vruSubClass.bicyclistAndLightVruVehicle.type = object_class_with_confidence->object_class()->vru_sub_class()->bicyclist_and_light_vru_vehicle();
-                                            rosObjectClassWithConfidence.objectClass.vruSubClass.motorcyclist.type = object_class_with_confidence->object_class()->vru_sub_class()->motorcyclist();
-                                            rosObjectClassWithConfidence.objectClass.vruSubClass.animal.type = object_class_with_confidence->object_class()->vru_sub_class()->animal();
+                                            // rosObjectClassWithConfidence.objectClass.vruSubClass.pedestrian.type = object_class_with_confidence->object_class()->vru_sub_class()->pedestrian();
+                                            // rosObjectClassWithConfidence.objectClass.vruSubClass.bicyclistAndLightVruVehicle.type = object_class_with_confidence->object_class()->vru_sub_class()->bicyclist_and_light_vru_vehicle();
+                                            // rosObjectClassWithConfidence.objectClass.vruSubClass.motorcyclist.type = object_class_with_confidence->object_class()->vru_sub_class()->motorcyclist();
+                                            // rosObjectClassWithConfidence.objectClass.vruSubClass.animal.type = object_class_with_confidence->object_class()->vru_sub_class()->animal();
 
                                             rosPerceivedObject.classification.push_back(rosObjectClassWithConfidence);
                                         }
@@ -887,6 +806,9 @@ private:
                             }
                         }
                     }
+
+                    break;
+                }
                 }
 
                 break;
@@ -920,12 +842,11 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "car2x_unit");
 
-    ros::NodeHandle nh("~"); // "~" means private NodeHandle
-    std::string ip_address;
+    ros::NodeHandle nh("~");
+    string ip_address;
     int local_port, remote_port;
 
-    // The second parameter to param() is the default value to use if the parameter was not set
-    nh.param<std::string>("ip_address", ip_address, "127.0.0.1");
+    nh.param<string>("ip_address", ip_address, "127.0.0.1");
     nh.param<int>("local_port", local_port, 12346);
     nh.param<int>("remote_port", remote_port, 12345);
 

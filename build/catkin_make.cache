@@ -1,2 +1,2 @@
-car2x_unit:cpm_interfaces:pdk_ros_msgs
+car2x_unit:cpm_interfaces
 -DCATKIN_DEVEL_PREFIX=/home/huiyu/ros1_car2x_unit/devel -DCMAKE_INSTALL_PREFIX=/home/huiyu/ros1_car2x_unit/install -G Unix Makefiles
